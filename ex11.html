@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Object</h1>
+    <h2>Creaes</h2>
+    <script>
+        var coworker = {
+            "pro":"s",
+            "dio":"d"
+        };
+        document.write("pro:"+coworker.pro+"<br>");
+        document.write("dio:"+coworker.dio+"<br>");
+        coworker.bookkeeper = "duru";
+        document.write("bookkeeper:"+coworker.bookkeeper+"<br>");
+        coworker["data scientist"] = "to";
+        document.write("data scientist:"+coworker["data scientist"]+"<br>");
+        </script>
+        <h2>Iterate</h2><!--iterate 반복하다-->
+        <script>
+            for(var key in coworker ){/*배열에서는 index로 표현*/
+                document.write(key+':'+coworker[key]+'<br>');
+            }
+            </script>
+            <h2>Property & Method</h2>
+            <script>
+                coworker.showAll = function(){/* function showAll()과 똑같은표현
+                    var showAll= function()도 똑같은표현*/
+                    for(var key in this ){/*배열에서는 index로 표현*/
+                    document.write(key+':'+this[key]+'<br>');
+                    }/*객체에 소속된함수는 method라부름coworker가 변경될수있으니 함수가 소속된 객체를 가리키는 약속된기호this*/
+                    }
+                    coworker.showAll();
+                
+                </script>
+</body>
+</html>

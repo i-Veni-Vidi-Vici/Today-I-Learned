@@ -3,17 +3,60 @@
 <head>
     <title> WEB1 - Welcome</title>
     <meta charset="utf-8">
+    <style>
+        a { 
+            color:black;
+            font-size: 30px;
+            
+            text-decoration: none;
+        }
+        ol {
+            font-size: 30px;
+        }
+        h1 { 
+            font-size:100px;
+            text-align: center;
+            
+        }
+        #active{
+            color:red;
+        }
+        .saw{
+            color:gray;
+        }
+
+    </style>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+      <script src="color.js"> //스크립트 요약 src
+        </script>
 </head>
 
 
 <body>
     <h1><a href="index.html">WEB</a></h1>
+    <input type="button" value="night" onclick="
+    nightDayHandler(this); /*this를 함수괄호에넘*/
+    ">
+    <p>
+    <iframe width="560" height="315" 
+    src="https://www.youtube.com/embed/zTJkxtzIj8I" 
+    title="YouTube video player" frameborder="0" 
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+    allowfullscreen></iframe>
+    </p>
+
     <ol>
-        <li><a href="1.html">HTML</a></li>
-        <li><a href="2.html">CSS</a></li>
+        <li><a href="1.html" class="saw" >HTML</a></li>
+        <li><a href="2.html" class="saw" id="active" >CSS</a></li>
         <li><a href="3.html">JavaScript</a></li>
     </ol>
-
+    <!--
+    <ol>
+        <li><a href="1.html"><font color="red">HTML</font></a></li>
+        <li><a href="2.html"><font color="blue">CSS</font></a></li>
+        <li><a href="3.html"><font color="blue">JavaScript</font></a></li>
+    </ol>
+    -->
     <ul>
         <li>b</li>
         <li>s</li>
@@ -23,5 +66,6 @@
     <h2> WEB이란 무엇인가? </h2>
     <p> WEB 이란 책과같은존재
     </p>
+   
 </body>
 </html>

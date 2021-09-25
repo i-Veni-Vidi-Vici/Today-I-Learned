@@ -1,0 +1,55 @@
+#grid{
+    display: grid;
+    grid-template-columns: 150px 1fr;
+
+}
+a { 
+        color:black;
+       
+        
+    }
+body{
+    margin:0; /*바디 마진때문에 경계선짤림*/
+}
+#grid ol{
+    padding-left:33px;
+}
+ol{
+    border-right:1px solid gray; /*오른쪽에 경계주기*/
+    
+    width:100px;
+    margin:0;/*마진떄문에 보더경계가 짤림*/
+    padding: 10px;
+    
+}
+
+#article{
+    padding-left:25px;
+}
+h1{
+    font-size:45px;
+    text-align: center;
+    border-bottom:1px solid gray;
+    margin:0;
+    padding:20px;
+}
+@media(max-width:600px){
+    h1{
+        border-bottom:none;
+        font-size:20px;
+    }
+    #grid{ 
+    display: block;/*콜룸으로나눠지는grid 형태에서 다시block형태로*/
+
+
+}
+     ol{ 
+         width:unset; /* 폭 초기화*/
+        border-right:none;
+        border-bottom:1px solid gray;
+        margin:0;
+        
+
+    }
+
+}
