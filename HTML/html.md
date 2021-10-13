@@ -107,6 +107,12 @@ auto closing 검색
 태그로는 한계가있을때 태크를 사용
 - ```<img src="이미지.jpg" width="50%">```
   - ```src```, ```width``` 위치 상관x
+ 
+## Html Language attribute
+- HTML로 작성된 웹페이지 내 텍스트의 기본 언어값을 선언하기 위해 사용함
+- 검색엔진에서 html 문서의 언어특성을 파악할 때 사용됨
+- 검색엔진의 주 언어와 같은 lang attribute를 검색함 ex) 구글 코리아 lang="ko"
+- 문서의 기본언어값을 나타내므로 html element에 사용하는걸 권고
 
 ## 기타 
 - 웹사이트 오른쪽우클릭 페이지 소스보기  단축키 ```ctrl+u```
@@ -117,3 +123,4 @@ auto closing 검색
 https://www.advancedwebranking.com/html/ 
 - 구글링 rank of ~, frequency~
   -  항상 통계에 기반하여 많이사용하는 문법(태그)를 이용하여 구글링하여 학습하도록 노력
+  -  
