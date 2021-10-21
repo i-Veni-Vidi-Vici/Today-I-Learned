@@ -127,3 +127,100 @@
        description = 'Hello, Node.js';
      }
      ```
+## CRUD
+- ```Create```
+- ```Read```
+- ```Update```
+- ```Delete```
+
+- ```cd ..``` 		//부모 디렉터리로 이동
+
+### file read
+- ```javascript
+  const fs = require('fs') 		//fs = file system 약자 file system을 불러오기
+  
+  fs.readFile('sample.txt', 'utf8', function(err,data){       //sample.txt를 불러오고 utf8형식으로 
+    console.log(data);				  //data를 가져오기
+  });
+  ```
+## parameter Argument
+- ```javascript
+    var args = process.argv; 		// process.argv 는 배열에 실행한 노드파일위치, 실행한 파일위치, 이후 추가로 입력된값이 있는 배열
+    console.log(args); 			
+    if(args[2] === '1'){			//콘솔에 node ex.js 1 입력하면 c가출력됌
+      console.log('c');
+    } else {
+        console.log('d');
+    }
+    ```
+- ```javascript
+  const testFolder = '../data'; 		// ../부모디렉터리 ./ 현재디렉터리
+  const fs = require('fs');
+
+  fs.readdir(testFolder, function(error, filelist){ 		//파일 목록알아내서 filelist 에 배열로저장
+    console.log(filelist);    				
+  })
+  ```
+
+
+- ```javascript
+  <ul>
+    <li><a href="1.html">HTML</a></li>
+    <li><a href="2.html">CSS</a></li>			
+    <li><a href="3.html">JavaScript</a></li>
+  </ul>
+  ```
+  - 위 코드를 ```Node.js```의 파일 불러오기를 통해 아래코드로 변경
+- ```javascript
+    fs.readdir('./data', function(error, filelist){			//파일명 filelist에 배열로저장
+          var list = '<ul>'
+          var i = 0;	
+          while(i<filelist.length){						//파일리스트의 길이만큼
+            list = list +`<li><a href="/?id=${filelist[i]}">${filelist[i]}</a></li>`; 	//파일명 filelist[]를 이용
+            i++;
+          }
+          list =list+'</ul>';
+    }
+    ```
+
+## 함수
+- ```javascript
+  function sum(a,b){
+    return a+b;  			//return은 함수의 출력을 담당하며, return이 나온즉시 함수를 종료 함수안의 이후코드 실행 x
+  }
+  console.log(sum(2,4));  
+  ```
+
+## 패키지 매니저
+- 소프트웨어들을 관리하고 설치하고 삭제 업데이트해주는 것
+- ```NPM```
+~~- ```https://pm2.keymetrics.io/```~~
+- ```
+  npm install pm2 -g
+  ``` 	
+  - ```-g``` global의 약자 독립된 소프트웨어라서 어디든 설치돼야함 전역에 pm2설치
+- ```
+  pm2 start 파일 --watch
+  ```
+  - 파일코드가 수정되도 ``cmd``를껏다 안켜도 적용되는코드
+- ```
+  pm2 log
+  ```
+    - 코드 오류나 수정된것들 알려줌
+
+- ```
+  pm2 delete main
+  pm2 start main.js --watch --ignore-watch="data/*"
+  ```
+  - ```watch```옵션을 주면 파일이 변경됐을때 앱을 리로드 ```data```파일이 수정되면 리로드되서 ```data```파일에대해서는 설정 x
+
+- ```
+  pm2 start main.js --watch --ignore-watch="data/* sessions/*"  --no-daemon
+  ```
+    - 파일을 수정하거나 삭제 생성할때 우리가 원하지않는 타이밍에 꺼졌다 켜짐
+    - ```--no-daemon``` pm2를 실행하면서 로그가 출력되도록 함
+    - ```--ignore-watch="data/* sessions/*``` 세션 여러개의 디렉터리를 관리할때 특정 디랙토리에 대한 ```watch```를 하지 않기 
+
+- ```pm2 list```      // 현재 실행중인 프로세스 목록 제공
+- ```pm2 kill```  		//```pm2```로 켜진거 다끄기
+
