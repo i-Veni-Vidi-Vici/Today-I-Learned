@@ -224,3 +224,126 @@
 - ```pm2 list```      // 현재 실행중인 프로세스 목록 제공
 - ```pm2 kill```  		//```pm2```로 켜진거 다끄기
 
+
+## html
+
+- ```javascript
+  var app = http.createServer(function(request,response){})
+  ```
+  - ```createServer```는 ```Node.js```로 웹브라우저로 접속이 들어올때마다 ```createServer```의 콜백함수를 ```Node.js```가 호출 
+  - ```request```는 요청할때 웹브라우저가 보낸 정보들
+  - ```response```는 응답할때 우리가 웹브라우저에게 전송할 정보들
+
+
+### 배열
+- ```javascript
+  var members = ['a', 'b', 'c'];	//배열
+  var i = 0;
+  while(i < members.length){			//배열은 while 문으로 순서있게 뽑기
+    console.log('array :',members[i]);
+    i = i + 1;
+  }
+  ```
+  -  ```배열```은 순서, 숫자가 있다. 
+
+- ```javascript
+    var roles = {				//객체
+      'programmer':'a',
+      'designer' : 'b',
+      'manager' : 'c'
+    }
+    for(var n in roles){			//객체의 키값이 n에들어감
+      console.log('object => ', n, 'value => ', roles[n]);	//객체를 배열로 표시가능 따라서 값을 표현가능
+    }
+
+- ```javascript
+    var o = {			//객체
+      v1:'v1',
+      v2:'v2',
+      f1:function (){
+          console.log(this.v1);		//객체를 this로 받는다
+      },
+      f2:function (){
+          console.log(this.v2);		//객체를 this로 받는다
+      }
+    }
+    o.f1(); o.f2(); 
+
+- ```객체``` 순서가없고, 숫자번호대신 이름을지정할수있다.
+
+## Module
+- 객체를 정리할수있는 도구
+
+```mpart.js파일```
+
+- ```javascript
+  var M ={
+    v: 'v',
+    f:function(){
+        console.log(this.v);
+    }
+  }
+  module.exports =M;		//이 파일 밖에서도 객체M을 사용할수 있도록 함
+  ```
+```b파일```
+- ```javascript
+  var part = require('./mpart.js') 	//모듈을 가져오는것 ./ 현재 디렉터리
+  console.log(part);			// {v:'v', f:function()} 출력
+  part.f();				//v출력
+  ```
+
+## 입력 정보에 대한 보안
+- ```javascript
+  var filteredId = path.parse(queryData.id).base; 		
+  fs.readFile(`data/${filteredId}`, 'utf8', function(){})
+  ```
+  - 기존 ```queryData.id```로 하면은 주소창에 ```id=../password```(패스워드 정보가있는곳)을 검색하면 그곳으로 들어가짐
+  - 따라서 이런방법으로 컴퓨터를 탐색할수가있음
+	- ```path.parse```를 통해 ```filteredId```로 상위디렉터리를 가는것을 차단시킬수있음
+## 출력정보에 대한 보안
+- ```javascript
+  <script>
+   location.href ="https://naver.com"		//브라우저에서 글을 작성할때 이렇게 코드를 작성하면 그대로 코드가실행됨
+  </script>
+  ```
+### npm package
+- cmd에입력
+  - ```npm init``` 			//```package.json``` 생성
+  - ```npm install -s sanitize-html```		// ```-g```는 컴퓨터 전체 ```-s```는 우리가하는 프로젝트에서만 사용 ```sanitize-html``` 사용할 패키지이름
+
+- ```javascript
+  var sanitizeHtml =require('sanitize-html'); 			//sanitize-html을사용
+  const dirty = 'some really tacky HTML';
+  const clean = sanitizeHtml(dirty);
+  /////////////////////////////
+  var title = queryData.id;
+  var sanitizedTitle = sanitizeHtml(title);			//제목도 거르기
+  var sanitizedDescription = sanitizeHtml(description,{	
+  allowedTags:['h1']     //allowedTag로 태그 허용가능, h1은 디폴트값으로 수정되었음
+  });
+  ```
+
+## API
+- ```Application Programming Interface```
+- ```fs.readFile```
+  - ```node.js``` 개발자가 만든 함수 어떤원리로 동작하는지는 알기어려움
+  - ```이름```과 ```파라미터 리턴값```은 이 함수를 만든사람과 이것을 이용하는 개발자와의 약속된 조작 장치
+  - 즉 ```interface```라고 부른다.
+
+- ```javascript
+  var app = http.createServer(function(request,response){})
+  ```
+  - 크리에이트서버를 이용해서 웹서버를 만들고, 웹서버로 외부에서 요청이 들어올때마다 첫번째인자로 해당되는 함수를 요청
+  - 함수의 첫번째 파라미터 ```request```는 웹브라우저로부터 요청된 정보를 담고있는 인자로 약속
+  - 두번째 파라미터 ```response```는 함수를 통해서 사용자에게 응답할수있는 데이터들을포함한 정보를 인자로 약속
+
+- ```javascript
+  app.listen(3000);
+  ```	
+  - 요청에대해서 응답할수있도록 ```http```서버를 구동시키는것 ```server.listen([port][,host][, blocking])``` 에서 ```[, ]```생략가능
+## 기타
+- ```database``` 공부하기			//몽고디비, 마이sql
+- ```nodejs awesome``` 검색해보기 		
+  - ```nodejs```의 기본적인 모듈공부하는게 가장중요
+  - ```nodejs```의 주목받는 모듈이 나옴 모듈을 많이공부해보기
+- ```framework```공부하기			//공통적인부분을 미리구현해놓은것 자신일에 집중가능함
