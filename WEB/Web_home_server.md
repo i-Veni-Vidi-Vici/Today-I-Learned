@@ -44,4 +44,32 @@
 - 존재하는```0~65535```포트중에서 ```0~1023```포트는 ```Well-known port```로 변경하면 안됨
 - 웹서버를 추가로 만들고 싶을때 ```ex) 80번port http웹서버```  관습적으로  ```port 8080```번에 웹서버를 만듬
 - ```ex) http://dedede.com```으로접속하면 ```http```웹서버로 접속하겠다해서 ```port 80```번에 연결됨
-- ```ex) http://dedede.com:8080```으로접속하면 ```port 8080```웹서버 포트로 연결됨
+- ```ex) http://dedede.com:8080```으로접속하면 ```port 8080```웹서버 포트로 연결
+## 유동ip & 고정ip
+- 통신사 ```ISP= Internet Service Provider```와 계약하여 아이피를 받음
+- 유동아이피 ```Dynamic IP Address``` 
+  - 기존아이피를 회수해 인터넷을 사용하는 다른사용자에게 아이피를 넘기기 때문에 아이피가 계속 바뀜
+- 고정아이피 ```Static IP Address``` 
+  - 비용을 더들여 아이피를 고정시킴
+## DHCP
+- ```Dynamic Host Configuration Protocol```
+- ```DHCP(Dynamic Host Configuration Protocol)```은 네트워크에 접속한 장치의 
+```ip```, ```subnet mask```, ```gateway address```, ```DNS```와 같은 정보를 자동으로 설정해주는 기술
+
+### DHCP Server
+- 공유기는``` DHCP Server```를 가지고 있고, ```Client 컴퓨터```에는 ```DHCP Client```가 있음
+- 통신장비에 식별자가 존재하는데 ```Mac Address```,```Physical Address```라고 부름
+## 포트포워딩
+- ```ex) 외부ip:8081 -> 사설ip:80```
+- 포트포워딩을 통해서 공유기로 들어온 포트번호가 무엇이냐따라 내부네트워크의 특정기기에
+특정포트로 포워딩할수있다는것
+
+- 공유기 ```NAT```설정
+  - 포트포워딩
+  - 외부포트```8081``` 내부포트```80```
+### NAS
+- ```Network Attached Storage```
+- 네트워크를 통한 저장장치
+- ```ex) Dropbox``` 등
+
+
