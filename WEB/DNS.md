@@ -31,3 +31,57 @@
   - ```관리자CMD``` 실행
   - ```ipconfig/flushdns```
 - ```tracert DNSip```를 통해 속도확인가능 ```ex) tracert 1.1.1.1```
+## DNS Internal
+- ```ex) blog.example.com.``` 도메인주소 뒤에 ```.```점이 생략되어 있음
+- ```.```점을 ```Root```라고 부름
+- ```com``` , ```co.kr``` ,```kr``` //```Top-level```라고 부름
+- ```example```  //```Second-level``` 라고 부름
+- ```blog``` 	//```sub```라고 부름
+
+- ```Root``` ,```Top-level``` 등 각각의 ```DNS Server```들이 존재
+- ```Root DNS Server```는 ```Top-level``` 서버 목록들을 알고있어야함
+- ```Top-level DNS Server```는 ```Second-level``` 서버 목록들을 알고 있어야함
+- ```Second-level```은 ```sub```을 알고있어야함
+- ```DNS Server```
+  - ```ROOT``` -> ```Top-level``` -> ```Second-level``` -> ```sub```
+  - 컴퓨터는 ```Root server```에 최초접속 그 후 ```Top-level ip```를 알려줌 
+  - 다시 컴퓨터는 그것을 반복하여 ```sub```까지 접속
+## DNS Register
+```ICANN(비영리 단체)```
+- ```a.root-servers.net```
+- ```root name server```
+- ```.```점을관리
+- ```com NS a.gtld-servers.net```을 기억 //```com```라고 하는 ```top-level domain NS(name server)```는 ```a.gtld-servers.net```에 존재
+
+```Registry(등록소)```
+- ```a.gtld-servers.net```
+- ```Top-level domain```
+- ```.com.```을 관리
+- ```example.com NS a.iana-servers.net```을 요청으로 인해 알게됨  //```example.com```라고하는 ```Registrant(등록자)```의 ```NS(name server)```는 ```a.iana-servers.net```에 존재
+
+```Registrar(등록대행자)```
+```Registrant(등록자)```
+
+### example.com 등록과정
+- ```Registrant(등록자)```는 ```example.com```을 ```Registrar(등록대행자)```에게 요청하면 ```Registrar```은 ```Registry(등록소)```에게 요청
+- ```Registry```는 수수료를 받고 ```Registrar```에게 도메인을 넘기고 ```Registrant```에게 도메인을 넘김
+
+```authoritative name server```
+- ```a.iana-servers.net```
+- 사용자가 name server를 직접 만들거나 ```Registrar(등록대행자)```가 직접 제공하는 경우도 있음
+- ```example.com A 12.12.12.12``` //```A: Record Type Address, example.com```의 주소는 ```12.12.12.12```임
+--------------
+- ```Registrant(등록자)```는 ```Registrar(등록대행자)```에게 ```example.com NS a.iana-servers.net```을 보내주면
+```Registrar```은 ```Registry(등록소)```에게 ```example.com NS a.iana-servers.net```을 알려주고
+```Registry```은 자신이 관리하고있는 ```Top-level domain```에게  ```example.com NS a.iana-servers.net```을 기록
+- 이것을 통해 ```Top-level domain```은 ```authoritative name server```을 알게 된 상태가 됨
+
+- 결국 Registrant는 ```example.com A 12.12.12.12``` 라고 ```authoritative name server```에게 알려주면 각 ```domain server```는 서로 연결이되어짐
+
+### Client(사용자) 접속과정
+- 통신사 인터넷이 연결되면, ```DNS Server```를 자동으로 잡음 
+- 전세계 모든 ```Domain Server```는 ```Root name server```주소를 모두 알고있음
+- 따라서 ```a.root-servers.net```으로 연결
+- ```example.com```을 검색하면 ```DNS Server```에 요청되고 ```DNS Server```는 ```Root name server```에 요청 후 ```com NS a.gtld-servers.net```을 알려줌
+- 그럼 다시 ```Top-level domain``` 에 접속하고 ``example.com NS a.iana-servers.net``` 주소를 알려줌
+- ```authoritative name server```에 다시 접속하고  ```example.com A 12.12.12.12```을 알려주어 ```ip```주소를 ```DNS Server```는 알아내어 사용자는 그 ```ip```에 접속하여 인터넷이 연결됨
