@@ -38,12 +38,12 @@
 - ```Access```
 
 ### MySQL
-- 1994년 스웨덴에서 개발되기 시작한 ````Relational database```
+- 1994년 스웨덴에서 개발되기 시작한 ```Relational database```
 - 무료이고 오픈소스이면서 ```Relational database```의 주요한 기능을 대부분 갖추고 있는 준수한 ```database```
 - ```WEB```이 폭발적인 성장을하면서 웹개발자들은 웹페이지를 통해서 표현할 정보를 저장할 ```database```가 필요했는데, 무료이고 오픈소스였던 ```MySQL```이 웹 개발자들에게 좋은 대안이 됨
 - 자체적인 보안기능이 있어 조금 더 안전
 - 차등적 권한부여 가능
-- 
+
 #### MySQL 설치 & 실행
 - ```bitnami wamp```을 통해 설치 진행 
 - ```MySQL```실행은 ```cmd```창으로 실행해야함
@@ -59,3 +59,40 @@
 - 연관된 표를 그룹핑해서 연관되지 않은 표와 분리하는 폴더와 같은 ```database```가 존재 ```schema```라고도 부름
 - ```schema```들의 저장소를 ```database server```라 부름
 
+#### Schema
+
+##### databse 생성
+- ```create database 이름;``` 	//database 생성
+
+##### Read
+###### show
+- ```show databases; ```	
+	- ```database```목록을 보여줌
+- ```show tables;```
+	- 현재 데이터베이스의 테이블 목록을 보여줌
+- ```show tables from 데이터베이스;```
+	- 특정 데이터베이스의 테이블 목록
+- ```show table status;```
+	- 현재 데이터베이스이 모든 테이블 정보보기
+- ```show table status from 데이터베이스;```
+	- 특정 데이터베이스의 모든 테이블 정보 보기
+- ```show colums from 테이블;```
+	- 특정 테이블의 컬럼 보기
+- ```desc 테이블;```
+	- 특정 테이블의 구조가 나옴 ```show colums```과 비슷한 기능
+###### select
+- ```select * from 테이블;```
+	- 특정 테이블의 데이터들 전부 보기
+- ```select colum1, colum2, colum4 from 테이블;```
+	- 특정 테이블의 특정 ```colum1,2,4(행)```에 관련된 데이터들만 보기
+- ```select colum1, colum2, colum4 from 테이블 where colum2='Row(열) 데이터';```
+	- 특정 테이블의 특정 ```colum2```의 특정 ```'Row 데이터'```를 가진 ```Row(열)```들만 특정 ```colum1,2,4(행)```대해서 보기
+- ```select colum1, colum2, colum4 from 테이블 where colum2='Row(열) 데이터' order by colum1 desc;```
+	- 특정 테이블의 특정 ```colum2```의 특정 ```'Row 데이터'```를 가진 ```Row(열)```들만 특정 ```colum1,2,4(행)```대해서 	```colum1(row: 숫자)```의 내림차순으로 보기 
+- ```select colum1, colum2, colum4 from 테이블 where colum2='Row(열) 데이터' order by colum1 desc limit (숫자1),숫자2;	```
+	- 특정 테이블의 특정 ```colum2```의 특정 ```'Row 데이터'```를 가진 ```Row(열)```들만 특정 ```colum1,2,4(행)```대해서 		```colum1(row: 숫자)```의 내림차순으로 ```row(열)```의 순서 ```(숫자1)```번부터 ```row(열)```을 ```숫자2```만큼만 표시하기
+##### Update
+- ```update 테이블 set colum2='내용', colum3='내용' where colum1=row데이터;```
+	- 특정 테이블의 특정 ```colum1```에 특정 ```row```데이터를 가진 ```row(열)```중에서 ```colum2, 3```에 해당하는 ```row```값을 ```'		내용'```으로 변경```where```문 항상 확인하기, ```git```의 중요성을 인식
+- ```rename table 테이블1 to 테이블2;```
+	- ```테이블1```이름을 테이블2로 변경
