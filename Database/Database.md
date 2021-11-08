@@ -63,8 +63,11 @@
 
 ##### databse 생성
 - ```create database 이름;``` 	//database 생성
+##### 사용
+- ```use database이름;```
+	- 이 데이터베이스를 사용
 
-##### Read
+#### Read
 ###### show
 - ```show databases; ```	
 	- ```database```목록을 보여줌
@@ -91,8 +94,50 @@
 	- 특정 테이블의 특정 ```colum2```의 특정 ```'Row 데이터'```를 가진 ```Row(열)```들만 특정 ```colum1,2,4(행)```대해서 	```colum1(row: 숫자)```의 내림차순으로 보기 
 - ```select colum1, colum2, colum4 from 테이블 where colum2='Row(열) 데이터' order by colum1 desc limit (숫자1),숫자2;	```
 	- 특정 테이블의 특정 ```colum2```의 특정 ```'Row 데이터'```를 가진 ```Row(열)```들만 특정 ```colum1,2,4(행)```대해서 		```colum1(row: 숫자)```의 내림차순으로 ```row(열)```의 순서 ```(숫자1)```번부터 ```row(열)```을 ```숫자2```만큼만 표시하기
-##### Update
+#### Update
 - ```update 테이블 set colum2='내용', colum3='내용' where colum1=row데이터;```
 	- 특정 테이블의 특정 ```colum1```에 특정 ```row```데이터를 가진 ```row(열)```중에서 ```colum2, 3```에 해당하는 ```row```값을 ```'		내용'```으로 변경```where```문 항상 확인하기, ```git```의 중요성을 인식
 - ```rename table 테이블1 to 테이블2;```
 	- ```테이블1```이름을 테이블2로 변경
+#### Delete
+- ```delete from 테이블 where colum1='내용';```
+	- 특정 테이블의 특정```colum1```에 '내용'을 포함한 데이터row(열)만 삭제
+	- ```where```문 없을시 데이터 전부삭제 유의, ```git```의 중요성을 인식
+- ```Drop table 테이블;```
+	- ```table``` 삭제
+- ```Drop {DATABASE | SCHEMA} [IF EXISTS] database_name```	//데이터 베이스 삭제
+	- ```IF EXISTS```  //데이터 베이스가 존재하지않는 경우 오류를 방지하기위해 사용
+	- ```drop database 이름``` 	//해당 데이터베이스 삭제
+
+
+#### Join
+- ```
+	select * from 테이블1 left join 테이블2 on 테이블1.colum3 = 테이블2.colum1;
+	```
+	- 테이블1의 특정 ```colum3```과 테이블2의 특정 ```colum1```이 같다면, 두 테이블 모두(```*```) 합쳐라
+- ```
+	select 테이블1.colum1 colum2, colum4 from 테이블1 left join 테이블2 on 테이블1.colum3 = 테이블2.colum1;
+	```
+ 	- 테이블1의 특정 ```colum3```과 테이블2의 특정 ```colum1```이 같다면, 두 테이블중 특정 colum1,2,4만 합쳐라 			
+ 	- 테이블1.colum1은 테이블2 colum과 중복되는 이름이 있을시 작성해줘야함
+	- ```
+		select 테이블1.colum1 AS 테이블1_coulm1 colum2, colum4 from 테이블1 left join 테이블2 on 테이블1.colum3 = 테이블2.colum1;
+		```
+		- ```테이블1.colum1```의 이름을 ```테이블1_colum1```로 변경
+
+
+
+
+
+## SQL
+
+- ```Structured Query Language```
+	- ```Structured``` 표로 구조화됨
+	- ```Query``` 데이터베이스에게 생성,삭제등을 요청 
+	- ```Language``` 서버와 약속된 언어인 ```SQL```
+- 관계형 데이터베이스 시스템(RDBMS)에서 데이터를 관리, 처리하기 위해 설계된 언어 즉, 구조적 데이터 질의 언어
+
+### table
+- 표 
+- ```x축```: row, 행, record, 데이터
+- ```y축```: column, 열, 데이터구조
