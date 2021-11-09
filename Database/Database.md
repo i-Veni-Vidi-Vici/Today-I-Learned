@@ -141,3 +141,49 @@
 - 표 
 - ```x축```: row, 행, record, 데이터
 - ```y축```: column, 열, 데이터구조
+### 생성
+- ```javascript
+	create table topic(
+		id int(11) not null auto_increment,	//구조= 이름 datatype(length) not null: 값이 없는것을 허용하지 않음, 11개까지 데이터노출 auto_increment 자동으로 숫자1씩증가
+		title varchar(100) not null,		//varchar: 길이가 변하는 문자열 100글자까지만, 값이 없는것을 허용x
+		description text null,		// text: 크기가 65,535인 문자열, 공백허용
+		created datetime not null,		// datatime: 날짜와 시간 표기, 공백허용x
+		author varchar(30) null,		// 크기가30인 문자열, 공백허용
+		profile varchar(100) null,
+		primary key(id)			// id의 각각의 값들이 중복되지 않게하기
+	);			 
+	```
+
+#### Insert
+- ```
+	insert into topic (title, description,created, author,profile) values('MySQL', 'MySQL is ...', now(),'seongil','developer');
+	```
+	- 기존  행```colums``` 에  ```row(열)```추가
+	- ```insert into 테이블 (colum1, colum2, colum4, ...) values (value1, value2, value4, ..);```
+		- 특정```colums``` 선택가능 	
+	- ```datetime``` 형식의 ```created```의 열 값에는 ```now()```함수를 통해 현재시간 작성가능
+
+### Internet & Database
+- 인터넷이 동작하기위해 컴퓨터 2대가 필요
+- 인터넷을 통해 컴퓨터간 연결이 가능
+- 응답하는쪽```(Server)```과 요청하는쪽```(Client)```이 존재
+
+#### web
+- 인터넷이 필요, 2대의 컴퓨터 필요
+- ```web client```가 요청, ```web server```가 응답
+#### mysql
+- ```database clinet```가 요청, ```database server``` 응답
+- ```./mysql -uroot -p``` 요청 ```database client```는 ```mysql monitor```를 기본적으로 제공하여 사용
+- ```mysql monitor```는 명령어를 통해 ```database server```를 제어
+##### mysql clinet
+- 여려가지가 존재하는데, 그중 기본적으로 제공되는것이 ```mysql monitor```
+- ```mysql monitor```
+	- 명령어 기반 프로그램
+	- ```
+		./mysql -uoot -p (-hlocalhost)
+		```
+		- ```mysql client```로 다른 컴퓨터에 있는 ```server```에 접속하려면 ```-h```주소를 입력
+		- 현재 사용하고 있는 ```client```와 ```server```가 같은 위치에 있어 자신을 가리키는 ```localhost```입력
+		- ```localhost```는 생략가능, 자동으로 설정되어있음
+- ```mysql workbench```
+ 	- ```gui``` 형식으로 더 간편히 ```mysql``` 사용가능
