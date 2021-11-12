@@ -44,13 +44,13 @@
 - ```GRANT DBA TO 사용자;```	//```GRANT``` : 부여,``` DBA``` : ```DatabaseAdministrator``` 모든권한,즉 사용자에게 모든권한을 부여
 테이블 생성
 - ```javascript
-		CREATE TABLE topic (
-			id NUMBER NOT NULL,	//NUMBER - DataType, NOT NULL- 값이 반드시 존재해야함
-			title VARCHAR2(50) NOT NULL,	//VARCHAR2(50) 길이50제한 Varchar2형식
-			description VARCHAR2(4000) NULL,
-			created DATE NOT NULL		//DATE 날짜를위한 DataType
-			);
-			```
+	CREATE TABLE topic (
+		id NUMBER NOT NULL,	//NUMBER - DataType, NOT NULL- 값이 반드시 존재해야함
+		title VARCHAR2(50) NOT NULL,	//VARCHAR2(50) 길이50제한 Varchar2형식
+		description VARCHAR2(4000) NULL,
+		created DATE NOT NULL		//DATE 날짜를위한 DataType
+	);
+	```
 ### Row(행) 추가
 - ```javascript
 	 INSERT INTO topic				//Row(행)을 추가할 table 선택
@@ -62,22 +62,22 @@
 
 ### Row(행) 읽기
 - ```SELECT * FROM topic;```		// ```Select```= 행가져오기, ```*``` = 모든```column```에대해, ```FROM topic``` = ```topic```이란 ```table```에서
-- ```SELECT id, title, created FROM topic;```		//```id, title, created``` = 특정 ```column```에 대해 Row(행)가져오기
-- ```SELECT * FROM topic WHERE id = 1;```		//```WHERE id = 1``` =  특정```column id```의 값이```1```인 행만출력
-- ```SELECT * FROM topic WHERE id > 1;```		//```WHERE id > 1``` 특정```column id```에 ```1```보다큰 값이 있는 Row(행)만출력
-- ```SELECT id, title, created FROM topic WHERE id =1;```	//특정 ```column id```값이 ```1```인 Row(행)들만 출력
+- ```SELECT id, title, created FROM topic;```		//```id, title, created``` = 특정 ```column```에 대해 ```Row(행)```가져오기
+- ```SELECT * FROM topic WHERE id = 1;```		//```WHERE id = 1``` =  특정```column id```의 값이```1```인 ```Row(행)```만출력
+- ```SELECT * FROM topic WHERE id > 1;```		//```WHERE id > 1``` 특정```column id```에 ```1```보다큰 값이 있는 ```Row(행)```만출력
+- ```SELECT id, title, created FROM topic WHERE id =1;```	//특정 ```column id```값이 ```1```인 ```Row(행)```들만 출력
 
 ### 정렬과 페이징
 - ```SELECT * FROM topic ORDER BY id DESC;```	//```ORDER BY id DESC```= 특정```column id```에 대해서 내림차순 정렬,```DESC= descendent```, 오름차순 ```ASC= ascent```
 - ```javascript
-		SELECT * FROM topic
-			OFFSET 1 ROWS;			//OFFSET 1 ROWS = 1번째 Row(행)들부터 출력, Row(행)은 0번째부터존재
-			```
+	SELECT * FROM topic
+		OFFSET 1 ROWS;			//OFFSET 1 ROWS = 1번째 Row(행)들부터 출력, Row(행)은 0번째부터존재
+	```
 - ```javascript
-		SELECT * FROM topic
-			OFFSET 0 ROWS			//0번째 Row(행)부터 
-			FETCH NEXT n ROWS ONLY;		//n개의 Row(행)만 출력
-			```
+	SELECT * FROM topic
+		OFFSET 0 ROWS			//0번째 Row(행)부터 
+		FETCH NEXT n ROWS ONLY;		//n개의 Row(행)만 출력
+	```
 ### Row(행) 수정 & 삭제 
 - ```javascript
 	 UPDATE topic			//topic table 수정
@@ -86,7 +86,7 @@
 		description = 'MSSQL is...'	
 		WHERE			//중요 column id 값이 3인 Row(행)들만 수정
 		id =3;
-		```
+	```
 ```commit;``` 	//실제로 반영
 - ```DELETE FROM topic WHERE id = 3;```		//```colum id``` 값이 3인 Row(행)만을 삭제			
 ```commit;```		//실제로 반영
