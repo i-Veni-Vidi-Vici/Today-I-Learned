@@ -107,11 +107,11 @@
 - 주로 ```Primary Key```값에 중복값을 방지하기 위해 사용
 - ```CREATE SEQUENCE 이름;```	//```CREATE SEQUENCE``` = ```Sequence``` 생성
 - ```javascript
-		INSERT INTO topic
-			(id,title,description,created)
-			VAlUES
-			(이름.NEXTVAL,'MongoDB','MongoDB is...',SYSDATE);		//이름.NEXTVAL = 1씩증가하는 값
-		```
+	INSERT INTO topic
+		(id,title,description,created)
+		VAlUES
+		(이름.NEXTVAL,'MongoDB','MongoDB is...',SYSDATE);		//이름.NEXTVAL = 1씩증가하는 값
+	```
 - ```SELECT 이름.CURRVAL FROM topic;``` 	//```topic table```의 ```Sequence```의 현재값
 - ```SELECT 이름.CURRVAL FROM dual;```	// 가상의 표인 특수한 ```table```
 - ```DROP SEQUENCE 이름;``` 	//```Sequence``` 삭제
