@@ -36,3 +36,60 @@
       var title = request.params.pageId;		//pageId의 변수를 저장
     }
     ```
+### redirect
+##### node.js
+- ```javascript
+ fs.writeFile(`data/${title}`, description, 'utf8', function(err){
+        response.writeHead(302, {Location: `/page/${title}`});	 	//기존 node.js의 redirect 방식
+        response.end();
+      })
+      ```
+##### express
+- ```javascript
+ fs.writeFile(`data/${title}`, description, 'utf8', function(err){
+	 response.redirect(`/page/${title}`)			//express 의 redirect방식, 이 주소로이동시킴
+ }
+ ```
+- ```javascript
+ else if(pathname === '/update_process'){	//기존 node.js의 post방식을 if절로 처리
+ ```
+- ```javascript
+  app.post('/update_process', function(request, response){		//express의 post절을 이용하여 사용
+  ```
+///////////////////////////수정
+## middleware parameters use
+Third-party middleware	//Third-party middleware는 express가 제공하는 것이 아닌 제3자가 만든것
+- body-parser		// 그중 post 방식으로 전송된 데이터를 쉽게 가져오는 Third-party middleware
+- npm install body-parser --save	//터미널 body-parser설치 body=웹브라우저에서 요청한 데이터의 본체, header= 그본체를 설명하는 것, parser= 데이터의 본체를 분석
+- var bodyParser = require('body-parser');	//body-parser모듈 불러오기
+- app.use(bodyParser.urlencoded({ extended: false }))	//form 데이터를 사용할때 사용,  body-parser가 만들어내는 middleware을 실행하는 코드, app.post()의 콜백함수 첫번째 인자 request에 body라는 property가 생성됨
+
+-  app.post('/create_process', function(request, response){	
+   var body = '';						//기존에는 body를 직접 만듬
+  request.on('data', function(data){
+      body = body + data;
+   });
+  request.on('end', function(){
+       var post = qs.parse(body);
+       var title = post.title;
+      var description = post.description;
+      fs.writeFile(`data/${title}`, description, 'utf8', function(err){
+        response.redirect(`/page/${title}`)
+      })
+   });
+});
+->
+- app.post('/create_process', function(request, response){
+      var post = request.body;			//body를 body parser middleware를 통해 request.body를 통해 body를 직접 만들지 않고 간결하게 구현 가능
+      var title = post.title;
+      var description = post.description;
+      fs.writeFile(`data/${title}`, description, 'utf8', function(err){
+        response.redirect(`/page/${title}`)
+      })
+ });
+  
+compression middleware
+- npm install compression --save	//compression 모듈설치
+- var compression = require('compression');  	//compression 모듈 불러오기
+app.use(compression());	//compression middleware 실행
+- ctrl + shift + R 	//캐시 삭제하여 강제로 리로드
