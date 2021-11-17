@@ -108,3 +108,79 @@
 - ```var compression = require('compression');```  	//```compression``` 모듈 불러오기
 - ```app.use(compression());```		//```compression middleware``` 실행
 - ```ctrl + shift + R``` 	//캐시 삭제하여 강제로 리로드
+## middleware 생성
+- ```javascript 
+	app.use(,function(request, response, next){
+	 ->app.get('*',function(request, response, next){	//app.use처럼 모든요청이 아니라 get 방식으로 들어오는 요청만으로 제한, '*'=모든요청, 불필요한 요청을 제한하는것 결국 두번째 인자로 받은 콜백함수가 middleware임 즉, express에서는 모든것이 middleware라고 할수 있음
+	  fs.readdir('./data', function(error, filelist){	//중복되는 코드 fs.readdir를 middleware로 만들기
+	    request.list= filelist;
+	    next();		//다음에 실행되어질 middleware를 실행할지 안할지를 그 이전 middleware가 결정
+
+	  });
+	});
+	```
+- ```javascript
+	app.get('/', function(request, response){ 
+
+		//fs.readdir('./data', function(error, filelist){		//삭제
+		  var title = 'Welcome';
+		  var description = 'Hello, Node.js';
+		  var list = template.list(request.list);	//filelist를 request.list로 변경
+		  var html = template.HTML(title, list,
+		    `<h2>${title}</h2>${description}`,
+		    `<a href="/create">create</a>`
+		  );
+		  response.send(html);
+
+	});
+	```
+
+## middleware 실행순서
+##### application-level middleware
+- ```var app= express();```
+- ```app.use('/',function()),```	// 특정경로```'/'```에 대해서만 동작
+- ```app.get('/create', function(request, response){})```	//```method```가 ```get```방식인 경우에만 ```'/create'```경로로만 동작
+- ```javascript
+	app.use('/user/:id', function (req, res, next) {	// middeleware인 함수인자를 여러개 붙일수있음
+	  console.log('Request URL:', req.originalUrl)
+	  next()					//다음 함수인자를 호출하는의미
+	}, function (req, res, next) {			// middeleware인 함수인자를 여러개 붙일수있음
+	  console.log('Request Type:', req.method)
+	  next()
+	})  
+	```
+- ```javascript
+	app.get('/user/:id', function (req, res, next) {
+
+	  if (req.params.id === '0') next('route')	//req.params.id id=0이면,  다음 route인 app.get('/user/:id', function (req, res, next)이 실행
+
+	  else next()	// req.params.id id=0이 아니면, 다음 함수 인자를 호출
+	}, function (req, res, next) {
+	  res.send('regular') 	// 요청, 응답 주기 끝내면,  호출도 끝남
+	})
+	app.get('/user/:id', function (req, res, next) {
+	  res.send('special')
+	})
+	```
+	- 두번째 인자 ```function()```을 통해서 사용자가 직접 ```middleware```를 등록할 수 있는데 이것들을 ```application-level middleware```라고 함
+
+#### Third-party middleware
+- ```app.use(bodyParser.urlencoded({ extended: false }));```
+- ```app.use(compression());```
+- ```bodyParser```, ```compression()```등을 ```Third-party middleware```라고함
+### 정적인 파일의 서비스
+##### 정적인 파일
+- ```이미지 파일```
+- ```javascript```
+- ```css파일```
+#### 정적인 파일 사용
+- ```public``` 폴더의 ```images``` 폴더에 이미지```(hello.jpg)``` 저장
+- ```app.use(express.static('public'));```	
+	- 정적인 파일을 사용하기위해 ```public``` 폴더를 ```static``` 폴더로 지정
+	- ```public``` 폴더 안의 파일이나 폴더에 ```url```로 접근 가능 이 외에는 접근 불가
+- ```http://localhost:3000/images/hello.jpg``` 을 입력하면 이미지가 웹페이지에 출력
+- ```html
+	`<h2>${title}</h2>${description}
+	<img src="/images/hello.jpg" style="width:300px; display:block; margin-top:10px;"> `	
+	```
+	- 위 방식을 이용해 이미지 삽입, 크기 ```300px```, ```block```처리를 통해 줄바꿈, 윗 여백 ```10px```설정
