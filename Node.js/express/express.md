@@ -184,3 +184,64 @@
 	<img src="/images/hello.jpg" style="width:300px; display:block; margin-top:10px;"> `	
 	```
 	- 위 방식을 이용해 이미지 삽입, 크기 ```300px```, ```block```처리를 통해 줄바꿈, 윗 여백 ```10px```설정
+## error 처리
+#### 404 응답
+- ```javascript
+	app.use(function(req, res, next) {	// 404응답을 처리하는 middleware를 다른 모든 함수 아래에 추가해야함 middleware는 순차적으로 실행되기때문에 404응답은 마지막에 넣어야함
+	  res.status(404).send('Sorry cant find that!');
+	});
+	error handlers
+	```
+- ```javascript
+	app.use(function(err, req, res, next) { 	// error함수는 4개의 인자를 갖고있음
+	  console.error(err.stack);
+	  res.status(500).send('Something broke!');
+	});
+	```
+- ```javascript
+	app.get('/page/:pageId', function(request, response, next){	//error 함수를 호출하기위해 next 인자추가
+		fs.readFile(`data/${filteredId}`, 'utf8', function(err, description){
+			if(err){
+			  next(err);		//err가 존재하면 err실행, 인자가 4개인 error 함수 호출됨
+			} else {}
+	});
+	```
+## Router
+- 파일로 분리
+
+##### topic.js
+- ```javascript
+	var express = require('express');   //express 모듈 불러오기
+	var router = express.Router();      //express.Router method 호출
+	var template = require('../lib/template.js');	//../현재 디렉터리의 부모 디렉터리
+	router.get('/create', function(request, response){	})	//기존app을 router로 변경 후 /topic/create를 /create로 변경
+	module.exports =router;   //router를 외부로 호출
+	```
+##### main.js
+- ```javascript
+	var express = require('express');	//express 모듈 불러오기
+	var app = express();	//app으로 express사용
+	var topicRouter = require('./routes/topic');
+	app.use('/topic', topicRouter);
+	```
+
+### 보안
+- ```express update```
+- ```use TLS(SSL,https)```
+- ```use helmet```
+	- ```npm install --save helmet```	//```helmet```설치
+	- ```var helmet = require('helmet')```	//```helmet```모듈 불러오기
+	- ```app.use(helmet());```		//```helmet```사용
+- ```use cookies securely```
+- ```ensure your dependencies are secure```
+
+### express generator
+- ```express```를 사용할 때, 기본적으로 필요한 파일과 코드를 자동으로 만들어줌
+- ```npm install express-generator -g``` 	//설치
+- ```express -h``` 	//사용설명서 출력
+- ```express myapp```	//기본적으로 세팅된  ```express```폴더생성
+	- ```cd myapp```
+	- ```npm install```	//기본적으로 세팅된 모듈 설치
+	- ```npm start``` 	//앱실행
+### template engines
+- ```pug```	// ```html``` 코드 쉽게 작성
