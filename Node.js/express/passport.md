@@ -53,3 +53,70 @@
     console.log('deserializeUser', id);
   });
   ```
+##### passport 로그인 확인
+###### /lib/auth.js
+- ```javascript
+  module.exports = {
+      isOwner:function(request, response){
+          if(request.user){ 	  //로그인이 되어있을시 user객체가 존재해서 true
+            return true;
+          } else {
+            return false;
+          }
+        }, statusUI:function(request, response){
+          var authStatusUI = '<a href="/auth/login">login</a>'
+          if(this.isOwner(request, response)){
+            authStatusUI = `${request.user.nickname} | <a href="/auth/logout">logout</a>`;	//로그인이 되어있을시 request.user.nickname을 불러옴
+          }
+          return authStatusUI;
+        }
+  }
+  ```
+##### 로그아웃
+- ```javascript
+  router.get('/logout', function(request, response){
+     request.logout();		  //로그아웃
+     request.session.save(function(){
+    request.session.destroy();	  //session 삭제
+       response.redirect('/')		  //파일 store에 저장이끝난후 주소이동
+     })
+  });
+  ```
+### flash message
+- ```npm install -s connect-flash```	&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp; ```flash message```설치
+- ```var flash = require('connect-flash);```	&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp; ```flash message``` 모듈 불러오기
+- ```app.use(flash());```	&nbsp;&nbsp;&nbsp;&nbsp;//&nbsp;```session```을 사용하기때문에 ```app.use(session({```다음에 코드 작성 
+###### 예제
+- ```javascript
+  app.get('/flash', function(req, res){
+    req.flash('msg', 'Flash is back!!'); 	 //session store에 flash message 추가
+    res.send('flash');
+  });
+  app.get('/flash-display', function(req, res){
+    var fmsg =  req.flash();	//session store에 flash message 저장, flash message는 1회용 message이여서 데이터를 사용하면 삭제됨
+    console.log(fmsg);	
+    res.send(fmsg);
+  });
+  ```
+###### 구현
+- ```javascript
+   app.post('/auth/login_process',
+    passport.authenticate('local', {  
+        successRedirect: '/',                           
+        failureRedirect: '/auth/login',
+        failureFlash:true 	// 인증하는 과정에서 오류 발생시 플래시 메세지가 오류메세지로 전달
+        successFlash:true   // 인증하는 과정에서 성공시 플래시 메세지가 성공메세지로 전달
+    })
+   )
+   ```
+###### routes/auth.js
+- ```javascript
+  router.get('/login', function(request, response){
+     var fmsg =request.flash();		
+     var feedback = '';
+     if(fmsg.error){	//error가 존재하면
+       feedback = fmsg.error[0];	//feedback에 flash message 값만 저장
+     }
+    var html = template.HTML(title, list, `
+    <div style="color:red;">${feedback}</div>	//flash message 1번만 출력
+    ```
