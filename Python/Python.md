@@ -70,3 +70,77 @@
   a =(1,)*10
   print(a)		#(1, 1, 1, 1, 1, 1, 1, 1, 1, 1)출력
   ```
+##### 가변인자 - packing
+###### positional arguments
+- ```python
+  def a(*arg):
+    print(arg)
+  b =[1,2,3,4]
+  a(b)		#([1, 2, 3, 4],)출력, tuple에 저장됨
+  ```
+###### keyword arguments
+- ```python
+  def a(**arg):
+    print(arg)
+  a(ab='b',ac='c')	# {'ab': 'b', 'ac': 'c'}출력, dict에 저장됨
+  ```
+##### unpacking
+- ```python
+  a= [1,2,3]
+  def b(*num):
+      print(num)
+  b(*a)		#(1, 2, 3) 출력, tuple에 [1,2,3]이 저장되는게 아니라 하나의 원소씩 저장됨	
+  ```
+- ```python
+  a= {'a':'a', 'b':'b'}
+  def b(**num):
+      print(num)
+  b(**a)		#{'a': 'a', 'b': 'b'} 출력
+  ```
+
+- ```python
+  num= [1,2,3]
+  *a, =num
+  print(a)		#[1, 2, 3]출력
+  *a,b =num
+  print(a)		#[1, 2]출력
+  a,*b =num
+  print(b)		#[2, 3]출력
+  a,*b,c=num
+  print(b)		#[2]출력
+  ```
+
+#### math
+
+- ```python
+  import math	# 수학과 관련된 함수를 가지고 있는 math 모듈 불러오기
+  math.sqrt(x) 	# Return the square root of x, 제곱근
+  math.pow(x,y)	# Return x**y(x to the power of y), x의y제곱 or x의y승
+  ```
+
+#### 문자열(string) data type
+- 수정 불가
+- ```python
+  print('abc') #abc출력,문자열
+  print("abc") #abc출력,똑같은 문자열
+  a ='abc'
+  print(a[-1])	#c출력, [-1]마지막문자 c를가르킴, a[2]와 같은표현
+  print('''		#줄바꿈 가능한 문자열, """text"""로도 가능
+  a	      #a 출력
+  b	      #b 출력
+  c	      #c 출력
+  ''')
+  ```
+
+##### 이스케이프 코드
+- 문자열 내부에서 특수하게 사용할수 있게 약속된 코드
+- ```\\``` = 역슬래시(\)  
+- ```\'``` = 작은따옴표(')
+- ```\"``` = 큰따옴표
+- ```\n``` = 줄바꿈(개행)
+- ```\t``` = Tap간격
+##### 결합 연산자
+- ```python
+  print('1'+'1') #11출력, 문자열의 덧셈 연산자
+  print('Hello world'*1000) #Hellop world 1000번 출력,문자열의 곱셈 연산자
+  ```
