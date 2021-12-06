@@ -35,7 +35,7 @@
 - 첫번째 방법: ```python 파일명.py```		&nbsp;&nbsp;&nbsp;//python 실행
 - 두번째 방법: ```vscode``` 오른쪽위 세모표시 클릭```(run python file)```	&nbsp;&nbsp;&nbsp;//```python``` 실행
 
-### 문법
+## 문법
 #### data type
 - ```data type```에 따라 ```data``` 연산방법이 다르기 때문에 ```data type```을 엄격히 구분
 
@@ -143,4 +143,75 @@
 - ```python
   print('1'+'1') #11출력, 문자열의 덧셈 연산자
   print('Hello world'*1000) #Hellop world 1000번 출력,문자열의 곱셈 연산자
+  ```
+#### 데이터 타입 변환
+##### 정수변환 - ```int()```
+- Convert a number or string to an integer, or return 0 if no arguments are given
+- ```python
+  int(x) 		# x를 정수(int) 타입으로 변환, 정수로 변환이 불가능하면 오류발생
+  int("123")	# 정수 123으로 변경
+  int("12a")	# 문자a로인해 정수로 타입으로 변경불가-> 오류
+  int(False) 	# 0으로 정수 변환
+  int(True)	# 1로 정수 변환
+  ```
+##### 실수변환 - ```float()```
+- Convert a string or number to a floating point number, if possible
+- ```python
+  float()		# 0.0 return
+  float(x) 		# x를 실수(float) 타입으로 변환, 실수로 변환이 불가능하면 오류발생
+  float("123")  	# 실수 123.0으로 변환
+  float("12a") 	# 문자a로 인해 오류
+  float(False)	# 0.0 변환
+  float(True)	# 1.0 변환
+  ```
+##### 문자열 변환 - ```str()```
+- Create a new string object from the given object
+- ```python
+  str(x) 		# x를 문자열(str) 타입으로 변환
+  str(123)		# 문자열 "123"으로 변환
+  str(True)	# 문자열 "True"로 변환
+  ```
+##### 문자로 변환 - ```chr()```
+- Return a Unicode string of one character with ordinal i (str(i))
+- ```python
+  chr(x)		# x를 unicode값으로 문자열로 변환
+  chr(65)		# 문자열 "A"로 변환
+  chr(True)	# True=1 이므로 unicode 1에 대한 값으로 변환
+  ```
+##### bool로 변환 - ```bool()```
+- Returns True when the argument x is true, False otherwise
+- ```python
+  bool(x)		# x를 bool 타입으로 변환
+  bool()		# False로 변환
+  bool(1) 	# True로 변환
+  bool(0)		# False로 변환
+  bool("abc")	# True로 변환
+  bool("")        # False로 변환
+  bool(0.0)	# False로 변환
+  bool(0.1)	# True로 변환
+  ```
+#### 문자열 치환 - ```replace() ```
+- Return a copy with all occurrences of substring old replaced by new
+- ```python
+  문자열.replace(a, b, c)	# a= 변경할 문자열, b= 새 문자열, c= 횟수 기본값= -1(모두 변경)
+  a = 'abd'
+  a.replace('d', 'c')		# 'abc'로 교체된 copy를 return, 문자열은 수정불가
+  b ='aBaaAa'
+  b.replace('a', 'b', -1)	# 'bBbbAb'로 교체된 copy를 return, -1은 모두변경
+  b.replace('a', 'b', 2)	# 'bBbaAa'로 교체된 cpty를 return, 2번 변경
+  ```
+
+#### 문자열 분할 - ```split()```
+- Return a list of the words in the string, using sep as the delimiter string
+- ```문자열.split(sep='a', maxsplit='b')	```
+	-  ```sep``` : 구분자, 기본값(없음)은 공백에따라 분할, ```sep``` 생략가능
+	-  ```maxsplit``` :  최대 분할 수, 기본값(-1)은 최대로 분할, ```maxsplit``` 생략가능하지만 ```maxsplit```이 기본값이 아니면 ```sep```가 존재해야함
+	-  ```sep```의 구분자``a```를 기준으로 문자열을 ```b```번 분할
+- ```python
+  c='ab,ac,ad'
+  print(c.split(sep= ',', maxsplit=2))	->['ab', 'ac', 'ad']출력 # 구분자','으로 문자열c를 2번 분할
+  d= 'a b c'
+  print(d.split(maxsplit=1))	->['a', 'b c']출력 	# 기본값 구분자' '(공백)으로 문자열d를 1번분할
+  print(d.split())	->['a', 'b', 'c']출력 	#기본값 구분자' '(공백)으로 문자열d를 기본값(-1) 최대분할
+  print(d.split(1))->error	#maxsplit가 기본값이 아니면, sep가 존재해야함
   ```
