@@ -192,6 +192,7 @@
   ```
 #### 문자열 치환 - ```replace() ```
 - Return a copy with all occurrences of substring old replaced by new
+- 새롭게 교체된 문자열copy를 return
 - ```python
   문자열.replace(a, b, c)	# a= 변경할 문자열, b= 새 문자열, c= 횟수 기본값= -1(모두 변경)
   a = 'abd'
@@ -215,3 +216,63 @@
   print(d.split())	->['a', 'b', 'c']출력 	#기본값 구분자' '(공백)으로 문자열d를 기본값(-1) 최대분할
   print(d.split(1))->error	#maxsplit가 기본값이 아니면, sep가 존재해야함
   ```
+#### 문자열의 길이 - ```len()```
+- Return the number of items in a container
+- ```python
+	print(len('Hello world'*1000))		# 문자열의 길이
+	```
+#### 문자열 공백 제거 - ```strip()```
+- Return a copy of the string with leading and trailing whitespace removed
+- 앞 뒤 공백이 제거된 문자열 copy를 return
+- ```python
+	print('1    1    1'.strip(),'2')		# 1    1    1 2출력, 그대로
+	print('    1    '.strip(),'2')		# 1 2 출력, 앞 뒤 공백 제거
+	print('    1    '.lstrip(),'2')		# 1     2 출력, 앞 공백만 제거
+	print('    1    '.rstrip(),'2')		#     1 2 출력, 뒤 공백만 제거
+	```
+
+#### 문자열 대문자로 변경 - ```upper()```
+- Return a copy of the string converted to uppercase
+- 대문자로 변경된 문자열 copy를 return
+- ```python
+	print('abc'.upper())	# ABC 출력, 모든 소문자를 대문자로 변경후 출력
+	```
+#### 문자열 소문자로 변경 - ```lower()```
+- Return a copy of the string converted to lowercase
+- 소문자로 변경된 문자열 copy를 return
+- ```python
+	print('ABC'.lower())	# abc 출력, 모든 대문자를 소문자로 변경후 출력 
+	```
+#### 문자열 대문자 확인 - ```isupper()```
+- Return True if the string is an uppercase string, False otherwise
+- 모든 문자열이 대문자이면 ```True```, 하나라도 소문자가 있다면 ```False```, 한개 이상의 알파벳이 전부 대문자이고 한글이나 숫자, 기호 등이 있으면 ```True```, 대문자 알파벳이 한개도 없고 한글이나 숫자 기호가 있으면 ```False```
+- ```python
+	print('ABc'.isupper())	# False 출력, c 소문자
+	print('ABC'.isupper())	# True 출력, 모두 대문자
+	print('A과'.isupper())	# True 출력, A가 대문자이기 때문에
+	print('과'.isupper())	# False 출력, 대문자 알파벳이 하나도 없기때문에
+	```
+#### 문자열 소문자 확인 - ```islower()```
+- Return True if the string is a lowercase string, False otherwise
+- 모든 문자열이 소문자이면 ```True```, 하나라도 대문자가 있다면 ```False```, 한개 이상의 알파벳이 전부 소문자이고 한글이나 숫자, 기호 등이 있으면 ```True```, 소문자 알파벳이 한개도 없고 한글이나 숫자 기호가 있으면 ```False```
+- ```python
+	print('Abc'.islower())	# False 출력, A 대문자
+	print('abc'.islower())	# True 출력, 모두 소문자
+	print('a과 '.islower())	# True 출력, a가 소문자이기 때문에
+	print('과 '.islower())	# False 출력, 소문자 알파벳이 하나도 없기때문에
+	```
+	
+#### 문자열 첫문자 대문자 변경 - ```capitalize()```
+- Return a capitalized version of the string
+- 첫문자를 대문자로 변경
+- ```python
+	print('abc'.capitalize())	# Abc출력, 첫문자만 대문자로 변경후 출력
+	print('abcapple apple,apple.app6appㄱapp'.title())	#Abcapple Apple,Apple.App6AppㄱApp출력, 공백, 기호, 숫자, 한글이 알파벳사이에있으면 한 단어로취급
+	```
+
+#### 문자열 단어의 첫문자를 대문자 변경 - ```title()```
+- Return a version of the string where each word is titlecased
+- 문자열의 단어들의 첫문자를 대문자로 변경
+- ```python
+	print('abc'.title())		# Abc출력, 단어의 첫문자를 대문자로 변경후 출력
+	```
