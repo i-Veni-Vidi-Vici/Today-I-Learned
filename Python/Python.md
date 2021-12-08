@@ -276,3 +276,69 @@
 - ```python
 	print('abc'.title())		# Abc출력, 단어의 첫문자를 대문자로 변경후 출력
 	```
+#### 문자열 접미사 확인 - ```endswith()```
+- Return True if S ends with the specified suffix, False otherwise
+- 문자열의 접미사를 확인하여 같으면 ```True```, 틀리면 ```False``` Return
+- ```python
+	print('abcdefg'.endswith('efg'))	# True 출력, 처음부터 끝까지의 접미사
+	print('abcdefg'.endswith('efg',4))	# True 출력, 문자열[4]자리부터 끝까지'efg'의 접미사
+	print('abcdefg'.endswith('efg',5))	# False 출력, 문자열[5]자리부터 끝까지'fg'의 접미사
+	print('abcdefg'.endswith('efg',4,7))	# True 출력, 문자열[4]~[7-1]까지'efg'의 접미사
+	print('abcdefg'.endswith('efg',4,6))	# False 출력, 문자열[4]~[6-1]까지'ef'의 접미사
+	```
+
+#### 문자열 접두사 확인 - ```startswith()```
+- Return True if S starts with the specified prefix, False otherwise
+- 문자열의 접두사를 확인하여 같으면 ```True```, 틀리면 ```False``` Return
+- ```python	
+	print('abcdefg'.startswith('abc'))	# True 출력, 처음부터 끝까지의 접두사
+	print('abcdefg'.startswith('abc',0))	# True 출력, 문자열[0]부터 끝까지의 접두사
+	print('abcdefg'.startswith('abc',1))	# False 출력, 문자열[1]부터 끝까지'bcdefg'의 접두사
+	print('abcdefg'.startswith('abc',0,2))	# False 출력, 문자열[0]~[2-1]까지'ab'의 접두사
+	print('abcdefg'.startswith('abc',0,3))	# False 출력, 문자열[0]~[3-1]까지'abc'의 접두사
+	```
+
+### list data type
+- Built-in mutable sequence
+- 수정가능
+- 데이터의 순서를 정해 데이터를 관리하는 data type
+- ```python
+	example = [1, 2, 'abc']		#1,2,'abc' = 원소(element), list
+	print(example[0]) ->1	#[0] 첫번째원소인 1출력
+	print(example[-1]) ->abc	#[-1]은 마지막원소 'abc'를 가르킴,example[2]과 같음
+	print(example[-2]) ->2	#[-2]는 두번째원소 2를 가르킴 example[1]과 같음
+	print(example[-1][1]) ->b
+	print(len(example)) ->3	#원소 개수인 3출력
+	num =[2,1,3]		#원소가 int형식인 list
+	print(min(num))	->1	#num의 원소중 최솟값
+	print(max(num)) ->3	#num의 원소중 최댓값
+	print(sum(num)) ->6	#num의 원소 합계	 sum(x, start)	= start(초기값) + x데이터들의 합
+	print(sum([2,3],1))		#6 출력, 2+3+1
+	```
+#### list 연산
+##### 덧셈
+- ```python
+	a=[1,2,3]
+	b=[4,5]
+	print(a+b) # [1, 2, 3, 4, 5]출력,덧셈
+	```
+##### 곱셈
+- ```python
+	a= [1,2]
+	print(a*2) # [1, 2, 1, 2]출력, 곱셈
+	```
+
+
+#### list 슬라이싱
+- ```list``` 자르기
+- ```python
+	[start : stop : step]	#start = 슬라이싱 시작 위치, stop = 슬라이싱 끝나는위치 stop은 포함하지 않음, step = 양수일때 왼쪽부터 step에 따라 포함, 음수일때 오른쪽부터 step에 따라 포함
+	a= [1,2,3]
+	print([a[1:2]]) ->[2]	//[1]부터[2-1]까지
+	print(a[1:]) ->[2,3]	//[1]부터 끝까지
+	print(a[:1]) ->[1]		//[1-1]부터 처음까지
+	print(a[::2]) ->[1,3]	//전체범위에서 왼쪽부터 index+2마다 출력
+	print(a[::-1]) ->[3, 2, 1]	#전체 범위에서 오른쪽부터 index-1마다 출력
+	print(a[0::-1]) ->[1]	# [0]부터 끝까지 오른쪽부터 index-1마다 출력
+	print(a[2:0:-1]) -> [3, 2]	# [2]부터 [0+1]까지 오른쪽부터 index-1마다 출력
+	```
