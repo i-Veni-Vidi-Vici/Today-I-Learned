@@ -342,3 +342,83 @@
 	print(a[0::-1]) ->[1]	# [0]부터 끝까지 오른쪽부터 index-1마다 출력
 	print(a[2:0:-1]) -> [3, 2]	# [2]부터 [0+1]까지 오른쪽부터 index-1마다 출력
 	```
+#### list 값 수정
+- ```python
+	a= [1, 2, 2]
+	a[2] =3		#두번째 원소 수정
+	print(a) ->[1,2,3]	
+	```
+
+#### list 값 삭제 - ```del()```
+- ```python
+	del a[x]		# x번째 원소삭제, 범위삭제가능 파이썬 자체 함수 = del(a[x])
+	a= [1,2,4]
+	del a[2:] 	# [2]부터 끝까지 삭제 = del(a[2:])
+	print(a)	# [1, 2] 출력	
+	```
+#### list 값 추가 - ```append()```
+- Append object to the end of the list
+- ```python
+	list.append(x)	# list 끝에 값x을 추가
+	a =[1, 2]
+	a.append(3)	#a list 끝에 3을 추가
+	print(a) # [1, 2, 3]
+	```
+
+#### 특정위치에 값 추가 - ```insert(x,y)```
+- Insert object before index
+- ```python
+	list.insert(x, y)	#list[x]앞에 값 y를 추가
+	a= [1, 3]
+	a.insert(1,2)	#[1]앞에 2를 추가, 즉 위치[1]에 2를 추가
+	print(a) #[1, 2, 3]
+	```
+
+#### list 특정값 삭제 - ```remove(x)```
+- Remove first occurrence of value
+- Raises ValueError if the value is not present
+- ```python
+	list.remove(x)	#list의 첫번째로 나오는 값x를 삭제, 존재하지 않으면 에러발생
+	a =[1, 2, 4, 3, 4]
+	a.remove(4)	#a[2]의 값4가 삭제
+	print(a) #[1, 2, 3, 4]
+	```
+
+#### list 값 반환후 삭제 - ```pop()```
+- Remove and return item at index (default last)
+- Raises IndexError if list is empty or index is out of range
+- ```python
+	list.pop()	#list의 마지막 원소를 return하고 삭제
+	list.pop(x)	#list의 [x]원소를 return하고 삭제
+	```
+- ```python
+	a =[1, 2, 3]
+	print(a.pop()) 	#3출력, 마지막 원소인 a[2]를 return후 삭제
+	print(a) #[1,2]
+	```
+- ```python
+	a =[1, 2, 3]
+	print(a.pop(1)) #2출력, a[1]원소를 return후 삭제
+	print(a) #[1, 2]	
+	```
+
+#### list 확장 - ```extend()```
+- Extend list by appending elements from the iterable
+- ```python
+	list.extend(x)	#list끝에 x리스트를 연결,list덧셈과는 달리 list에 저장됨
+	a= [1, 2, 3]
+	b= [4, 5, 6]
+	a.extend(b)	#a끝에 b리스트를 연결
+	print(a)	#[1, 2, 3, 4, 5, 6]
+	```
+- ```python
+	a= [1, 2, 3]
+	b= [4, 5, 6]
+	a.extend(b[:2])	#a끝에 b[2-1]부터 처음까지 리스트를 연결
+	print(a)	#[1, 2, 3, 4, 5]
+	```
+- ```python	
+	a= [1, 2, 3]
+	a.extend('abc')	#a끝에 'abc'를 연결
+	print(a)	#[1, 2, 3, a, b, c]
+	```
