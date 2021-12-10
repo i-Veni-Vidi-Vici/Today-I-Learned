@@ -422,3 +422,62 @@
 	a.extend('abc')	#a끝에 'abc'를 연결
 	print(a)	#[1, 2, 3, a, b, c]
 	```
+#### list 복사 - ```copy()```
+- Return a shallow copy of the list
+- ```python
+	list.copy()	#list 복사후 return
+	a= [1,2,3]
+	print(a.copy()) ->[1, 2, 3]	#a list 복사후 return
+	id(a) 와 id(a.copy()) 값이 다름, copy를 통해 새로운 list가 생성
+	print(a[1:].copy) ->[2,3]	#a[1]부터 끝까지 복사후 return
+	```
+
+#### list 순서 뒤집기 - ```reverse()```
+- Reverse *IN PLACE*
+- ```python
+	list.reverse()	#list 순서 뒤집기
+	a=[1, 2, 3]
+	a.reverse()	#a list 순서 뒤집기
+	print(a) ->[3, 2, 1]
+	```
+
+#### list 정렬 - ```sort()```
+- Sort the list in ascending order and return None
+- ```python
+	list.sort(reverse= False) 	#list를 오름차순으로 정렬,(reverse= False)기본값으로 생략가능, list원소의 data type이 동일해야함
+	list.sort(reverse= True)	#list를 내림차순으로 정렬
+	a= [3, 2, 1]
+	a.sort()		//a list를 오름차순으로 정렬
+	a.sort(reverse= False)		#a list를 오름차순으로 정렬
+	print(a) ->[1, 2, 3]
+	a.sort(reverse= True)		#a list를 내림차순으로 정렬
+	print(a) 	# [3, 2, 1]
+	```
+- ```python
+	a= ['c', 'a', 'ad']
+	a.sort()		#a list를 오름차순으로 정렬
+	print(a) ->['a', 'ad', 'c']
+	```
+- ```python
+	a= [[3], [1, 4 ,5], [1]]
+	a.sort()		#a list를 오름차순으로 정렬
+	print(a) ->[[1], [1, 4, 5], [3]]
+	```
+
+#### list 값x의 개수 - ```count(x)```
+- Return number of occurrences of value
+- ```python
+	list.count(x)	#list의 x값 개수 return
+	a = [1, 2, 3, 1, '1', "1", "12", 12]
+	print(a.count(1)) ->2	#a list의 1값 개수 return
+	print(a.count('1')) ->1	#a list의 '1'값 개수 return
+	```
+
+#### list 값x의 위치 - ```index(x)```
+- Return first index of value
+- Raises ValueError if the value is not present
+- ```python	
+	list.index(x)	#list의 x값의 위치를 return
+	a =[1, 2, 3, 1]
+	print(a.index(1)) ->0 #a list의 첫번째 값1의 위치 return
+	```
