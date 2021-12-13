@@ -481,3 +481,79 @@
 	a =[1, 2, 3, 1]
 	print(a.index(1)) ->0 #a list의 첫번째 값1의 위치 return
 	```
+#### list 원소 전체 삭제 - ```clear()```
+- Remove all items from list
+- ```python
+	list.clear()	#list 원소 전부삭제
+	a=[1, 2, 3]
+	a.clear()		#a list 원소 전부삭제
+	print(a) -> []
+	```
+
+#### list 문자열로 합치기 - ```join()```
+- Concatenate any number of strings
+- list를 문자열로 연결
+- ```python
+	'구분자'.join(list)
+	print(''.join([1,2,3,'abc'])) 	# error list안은 오직 문자열만 있어야함
+	print(''.join(['a','b','c',]))	# abc 출력
+	print(' '.join(['a','b','c',]))	# a b c 출력
+	print('.'.join(['a','b','c',]))	# a.b.c 출력
+	```
+### tuple
+- Built-in immutable sequence
+- ```tuple```의 값 변경 불가
+- ```()```를 사용, 생략가능
+- 인수가 한개일때 ```(1, )```처럼 콤마```(,)```를 반드시 붙여야함
+- ```tuple```의 값 변경은 불가능하지만, ```tuple``` 값 변경이 아닌 ```인덱싱```, ```슬라이싱```, ```len()```, ```더하기``` 등은 가능
+- ```python
+	t1 = 1, 2, 3
+	t2 = 1,
+	t3 = (1, 2, 3)
+	t4 = (1, )
+	print(t1, t2, t3, t4) -> (1, 2, 3) (1,) (1, 2, 3) (1,)
+	```
+#### tuple 언팩킹
+- ```python
+	a,b,c = ('d','e','f')
+	print(a,b,c)	# d e f 출력, tuple의 unpacking 기능으로 하나씩 값을 받을수 있음
+	```
+#### tuple 데이터 타입 변환
+- ```tuple```과 ```list```는 형변환이 양쪽다 가능
+- ```iterable```한 객체 ```리스트```, ```딕셔너리```, ```집합```, ```문자열```등이 ```tuple```로 변환 가능
+
+### 딕셔너리 - ```dictionary```
+- ```python
+	{'Key':'Value'}	#딕셔너리는 index 대신 immutable한 Key값을 사용하고 Key로 그 'Key'에 대한  'Value'에 접근 Key값에는 mutable한 list,set는 불가
+	```
+#### 딕셔너리 ```Key``` 추가
+- ```python
+	a = {'a':'a','b':'b'}
+	a['c']= 'c'
+	print(a)		#{'a': 'a', 'b': 'b', 'c': 'c'} 출력
+	```
+#### 딕셔너리 ```Value``` 변경
+- ```python
+	a = {'a':'a','b':'b'}
+	a['b']= 'c'
+	print(a)		#{'a': 'a', 'b': 'c'} 출력
+	print(a['b'])	#c출력 	
+	```
+
+#### 딕셔너리 ```Key``` 유무확인 - ```in```
+- ```python
+	a = {'a':'c','b':'d'}
+	if 'b'  in a:
+    		print('Yes')	# Yes 출력
+	else:
+    		print('No')	# No 출력
+	```
+
+#### 딕셔너리 ```Value``` 유무확인 - ```in```
+- ```python
+	a = {'a':'c','b':'d'}
+	if 'd'  in a.values():
+    		print('Yes')	# Yes 출력
+	else:
+    		print('No')	# No 출력
+	```
