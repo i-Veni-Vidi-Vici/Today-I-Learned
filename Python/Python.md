@@ -557,3 +557,63 @@
 	else:
     		print('No')	# No 출력
 	```
+#### 딕셔너리 ```Key```집합 - ```.keys()```
+- D.keys() -> a set-like object providing a view on D's keys
+- ```python
+	a = {'a':'c','b':'d'}
+	print(a.keys())	#dict_keys(['a', 'b']) 출력
+	```
+
+#### 딕셔너리 ```Value```집합 - ```.values()```
+- D.values() -> an object providing a view on D's values
+- ```python
+	a = {'a':'c','b':'d'}
+	print(a.values())	#dict_values(['c', 'd']) 출력
+	```
+
+#### 딕셔너리 ```Key```, ```Value``` 한쌍으로 나타내기	- ```.items()```
+- D.items() -> a set-like object providing a view on D's items
+- ```python
+	a = {'a':'c','b':'d'}
+	print(a.items())	# dict_items([('a', 'c'), ('b', 'd')]) 출력
+	```
+
+#### 딕셔너리 ```Key```에 해당하는 ```Value```  - ```.get()```
+- ```python
+	a = {'a':'c','b':'d'}
+	print(a.get('a'))	# c출력
+	print(a.get('c'))	# None 출력
+	```
+
+#### 딕셔너리 한쌍의 ```Key```, ```Value``` 삭제 - ```del```
+- ```python
+	a = {'a':'c','b':'d'}
+	del a['a']
+	print(a)	# {'b': 'd'} 출력
+	```
+
+#### 딕셔너리 모든 ```Key```, ```Value``` 삭제 - ```.clear()```
+- D.clear() -> None. Remove all items from D
+- ```python
+	a = {'a':'c','b':'d'}
+	a.clear()
+	print(a)
+	```
+
+#### 딕셔너리 병합 -  ```.update()```
+- ```python
+	a.update(b)	# 딕셔너리 a 뒤에 b를 연결
+	a ={'a':'a','b':'b'}
+	b ={'c':'c'}
+	a.update(b)	# {'a': 'a', 'b': 'b', 'c': 'c'}출력 
+	```
+#### 자료형 생성 - ```zip()```
+- The zip object yields n-length tuples, where n is the number of iterables passed as positional arguments to zip()
+- This continues until the shortest argument is exhausted
+- 자료형의 같은 index의 값을 묶어 생성
+- ```python
+	print(list(zip('abcdefg', range(3), range(4))))	#[('a', 0, 0), ('b', 1, 1), ('c', 2, 2)] 출력, list자료형으로 tuple로 같은 index끼리 묶어 생성
+	a= ['a','b','c']
+	b= [1,2]
+	print(dict(zip(a,b)))		# {'a': 1, 'b': 2} 출력, 짝이없는 값은 사용되지않음
+	```
