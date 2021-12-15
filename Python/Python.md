@@ -617,3 +617,83 @@
 	b= [1,2]
 	print(dict(zip(a,b)))		# {'a': 1, 'b': 2} 출력, 짝이없는 값은 사용되지않음
 	```
+#### statistics
+- 데이터의 수학적 통계를 계산하는 함수를 제공
+- ```python
+	import statistics		#statistics 모듈 불러오기
+	print(statistics.mean(num))		#2출력, num의 평균
+	```
+
+
+#### range
+- 연속적인 정수 객체를 ```return```, 주로 ```반복문(for)```과 함께 사용됨
+##### range(stop)
+- 기본값 ```start(0)```부터 ```stop(stop-1)```까지 연속된 정수를 생성하는 객체를 ```return 0<=x<stop```
+- ```python
+	range(3)	# 기본값 start(0)부터 stop(3-1)까지 연속된 정수를 생성하는 객체를 return 0<=x<3
+	a = range(3) 	
+	print(a) ->range(0, 3)
+	print(type(a)) -><class 'range'>	# range로 생성된 정수의 객체는 일반 객체가아니라 range class 객체
+	```
+
+##### range(start, stop)
+- ```start(start)```부터 ```stop(stop-1)```까지 연속된 정수를 생성하는 객체를 ```return start<=x<stop```
+- ```python
+	range(-1, 2) 	# start(-1)부터 stop(2-1)까지 연속된 정수를 생성하는 객체를 return -1<=x<2
+	```
+##### range(start, stop, step)
+- ```start(start)```부터 ```stop(stop-1)```까지 ```step(증가 or 감소)```으로 연속된 정수를 생성하는 객체를 ```return start<=x<stop```
+- ```python
+	range(3, -2, -2)	#start(3)부터 stop(-2+1)까지 step(-2)감소로 연속된 정수를 생성하는 객체를 return 3>=x>-2 (3, 1, -1)
+	for i in range(3, -2, -2):
+    		print(i)	#3, 1,-1순서대로 출력
+	```
+
+
+#### random
+- ```python
+	import random	#random variable generators, 랜덤한 변수생성기인 random 모듈 불러오기
+	```
+##### random()
+- ```python
+	random.random()		#float, random() -> x in the interval [0,1), 0이상 1미만의 랜덤한 실수(0<=x<1)
+	```
+##### uniform(a,b)
+- ```python
+	random.uniform(a,b)	#float, Get a random number in the range [a, b) or [a, b] depending on rounding, 반올림에따라 a이상 b이하의 랜덤한 실수(a<=x<=b)
+	```
+
+##### randint()
+- ```python
+	random.randint(a,b)		#int, Return random integer in range [a, b], including both end points, a이상 b이하의 랜덤한 정수(a<=x<=b)
+	```
+
+##### randrange()
+- ```python
+	random.randrange(a,b)	#int, choose a random item from range[x,y), a이상 b미만사이의 랜덤한 정수(a<=x<b)
+	random.randrange(b)	#int, 0이상 b미만의 랜덤한 정수(0<=x<b)
+	```
+
+##### choice()
+- ```python
+	random.choice()		#Choose a random element from a non-empty sequence, sequence data type= 문자열(string), 리스트(list), 튜플(tuple), range(b) 중 랜덤한 원소
+	```
+- ```python
+	random.choice('abcd')	#문자열(string), 'abcd'문자열중 랜덤한 문자
+	random.choice([1,5,'a'])	#리스트(list), 1,5,'a'중 랜덤한 원소	
+	random.choice((1,5,'a'))	#튜플(tuple), 1,5,'a'중 랜덤한 원소
+	random.choice(range(b))	#range(b) 0이상 b미만의 랜덤한 정수 (0<=x<b)
+	random.choice(range(a,b))	#range(a,b) a이상 b미만의 랜덤한 정수 (a<=x<b)
+	```
+
+##### sample()
+- ```python
+	random.sample(a,k)	#Chooses k unique random elements from a population sequence or set, a= sequence or set, k= 랜덤하게 뽑을 인자의 개수, a인자의 개수>=k
+	random.sample('abcd',k)	#문자열(string), 'abcd'문자열 중 랜덤하고 고유한 k개의 인자, k=2->[d,a] 
+	random.sample({1,2,3,(5,6)},k)	#집합(set), 1,2,3,(5,6) 중 랜덤하고 고유한 k개의 인자, k=3->[2,(5,6),1]
+	```
+
+##### shuffle()
+- ```python
+	random.shuffle(x)		#Shuffle list x in place, and return None, x는 sequence data type 중 내부인자를 변경할 수 있는 list만 가능하며, data의 순서를 랜덤하게 바꿈
+	```
