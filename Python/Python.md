@@ -697,3 +697,74 @@
 - ```python
 	random.shuffle(x)		#Shuffle list x in place, and return None, x는 sequence data type 중 내부인자를 변경할 수 있는 list만 가능하며, data의 순서를 랜덤하게 바꿈
 	```
+#### 변수
+- ```python
+	name = 'se'	#변수 지정
+	message = 'hi '+name+' bye '+name+'.'	#변수를 문자열에 넣기
+	print(message)
+	```
+
+#### input & output
+- ```python
+	name = input('name: ')	#input se입력
+	print(name) ->se		#input된 값 출력
+	```
+
+##### print()
+- Prints the values to a stream, or to sys.stdout by default
+- 출력함수
+###### print() option
+###### end
+- 마지막 출력값 다음 출력할 문자
+- 기본값은 줄바꿈(개행)
+- ```python
+	print(12, end="3") # 123출력
+	print("abc"); print("d") 
+	# abc
+	# d 출력
+	```
+- ```python
+	print("abc", end=""); print("d") # abcd 출력, 기본값인 줄바꿈이 변경됨
+	```
+##### seq
+- 출력값 사이를 구분할 구분자
+- 기본값은 띄어쓰기(공백)
+- ```python
+	print(1,2,3) # 1 2 3출력
+	print(1,2,3, sep="") #123출력
+	```
+
+#### 문자열 formatting
+- 문자열안에 변수를 넣어 편리하게 사용하게하는것
+##### format()
+- ```python
+	'{0}, {1}'.format(data1,data2)  	# {0}자리에 data1, {1}자리에 data2 대입, {}안 0,1은 format의 인자 순서, 인자 순서 생략시 인자 순서대로 대입
+	print('num: {}, {1}'.format(1,2)) 	# error format 인자의 순서가 생략되면 다 생략되어야함
+	print('num: {}, {}'.format(1,2)) 	# num: 1, 2 출력, 인자순서 생략
+	print('num: {1}, {0}'.format(1,2))	# num: 2, 1 출력, 인자순서입력 
+	```
+##### 중괄호
+- ```python
+	print('중괄호 {{중괄호}}'.format(1))	# 중괄호 {중괄호} 출력, 중괄호 입력방법
+	print('중괄호 {{{}}}'.format(1))	# 중괄호 {1} 출력, 중괄호안에있는 데이터출력
+	```
+#### 정렬
+##### 왼쪽
+- ```python
+	{index:<n}	# n만큼의 자리에서 {index}의 위치인 format 인자 값을 왼쪽정렬(<), 나머지는 기본값 공백으로 채움
+	print('s{0:<6}e s{1:<10}e'.format('left6','left10'))	# sleft6 e sleft10    e 출력, {0}값을 6(:<6)자리에서 왼쪽 정렬(<), {1}값을 10자리(:<10)에서 왼쪽정렬(<)
+	```
+##### 오른쪽
+- ```python
+	{index:>n}	# n만큼의 자리에서 {index}의 위치인 format 인자 값을 오른쪽정렬(>), 나머지는 기본값 공백으로 채움
+	print('s{0:>7}e s{1:>10}e'.format('right7','right10'))	# s right7e s   right10e 출력, {0}값을 7(:>7)자리에서 오른쪽 정렬(>), {1}값을 10자리(:>10)에서 오른쪽정렬(>)
+	```
+##### 가운데
+- ```python
+	{index:^n}	# n만큼의 자리에서 {index}의 위치인 format 인자 값을 가운데정렬(^), 나머지는 기본값 공백으로 채움 , 가운데 정렬시 n자리개수에따라 양쪽 공백의 개수가 다를 수 있음
+	print('s{0:^9}e s{1:^13}e'.format('center9','center13'))	# s center9 e s  center13   e 출력, {0}값을9(:^9)자리에서 가운데정렬(^), {1}값을13(:^13)자리에서 가운데정렬(^) 가운데 정렬시 양쪽공백의 개수가 동일하지않으면 완벽한 가운데 정렬이 되지않음
+	```
+##### 공백 대신 다른값으로 채우기
+- ```python
+	print('s{0:.<6}e s{1:.<10}e'.format('left6','left10'))	# sleft6.e sleft10....e 출력, 공백대신 다른 값으로 채우기, 문자1개만 가능
+	```
