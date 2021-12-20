@@ -870,21 +870,21 @@
 - ```python
 	if 1 in [1, 2, 3]:	#true
 		print('true')  	#true출력
-		```
+	```
 - ```python
 	if 1 not in [2, 3, 4]:	#true
 		print('true') 	#true출력
-		```
+	```
 ### 반복문
 #### for
 - ```python
 	for 변수 in 문자열, 리스트, 튜플:	#python의 for문은 초기식, 조건식, 증감식의 반복이 아닌 문자열, 리스트, 튜플안의 원소값을 순서대로 가져오는 반복문
 		실행부분		#들여쓰기(Indentation) tab으로 for문의 실행부분을 구분
-		```
+	```
 - ```python
 	for i in [1, 2, 3]:		#리스트 1,2,3을 i에 차례대로 대입하면서 for문 실행 i=1 -> print(1), i=2 -> print(2) 
 		print(i) 		#차례대로 1 2 3 출력 
-		```
+	```
 ##### enumerate
 - Return an enumerate object
 - 두번째 인자```index(defalut = 0)```와 enumerate함수 첫번째 인자의 데이터를 ``tuple``형태로 ```Return```, 반복문과 함께 사용
@@ -897,11 +897,11 @@
 		print(data)	#(0, 'a') 출력, 기본값 0부터시작
 				#(1, 'b') 출력
 				#(2, 'c') 출력
-		```
+	```
 - ```python
 	a ='abc'
 	for data in enumerate(a[1:],1):	#index 시작지점= 1
 		print(data)
 		#(1, 'b')출력, 설정값 1부터 시작
 		#(2, 'c')출력
-		```
+	```
