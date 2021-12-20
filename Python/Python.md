@@ -826,3 +826,82 @@
 - 입문자가 보기 어려움
 ###### 디버깅
 - 코드를 한줄 한줄 실행하여 오류를 체계적으로 잡을수 있음
+###### pypi
+###### pandas
+- ```pip install pandas``` 	&nbsp;&nbsp;&nbsp;//&nbsp;pandas 설치
+- ```python
+	import pandas		#pandas 불러오기	
+	house= pandas.read_csv('house.csv')		#house.csv를 pandas csv로 읽기
+	print(house)	
+	print(house.head(n))	#Return the first n rows, default =5, 원하는 행만큼 return
+	print(house.describe())	#Generate descriptive statistics, 파일을 통계적으로 분석
+	```
+
+### 제어문
+- ```python
+	if 조건:
+		실행부분
+	```
+- ```python
+	a= 1
+	if a ==1:		#a=1이기 때문에, if문 true
+		print(a) 	#1출력, 다른언어와 달리 들여쓰기(Indentation)로 if문 영역을 구분
+	elif a == 2:	#false
+		print(2)
+	else:		#false
+		print(3)
+#### 비교연산자
+- ```python
+	==	#같다
+	!= 	#다르다
+	<	#우항이 크다
+	>	#좌항이 크다
+	>=	#우항이 크거나 같다
+	<=	#좌항이 크거나 같다
+	```
+#### 논리 연산자
+- ```python
+	a and b	#a와 b가 둘다 true일때 true
+	a or b	#a 또는 b 둘중 하나만 true이면 true
+	not a 	#a가 아닐때 true
+	in	#특정 자료형(리스트, 튜플, 문자열) 안에 특정원소가 있으면 true
+	not in	#특정 자료형(리스트, 튜플, 문자열) 안에 특정원소가 없으면 true
+	```
+- ```python
+	if 1 in [1, 2, 3]:	#true
+		print('true')  	#true출력
+		```
+- ```python
+	if 1 not in [2, 3, 4]:	#true
+		print('true') 	#true출력
+		```
+### 반복문
+#### for
+- ```python
+	for 변수 in 문자열, 리스트, 튜플:	#python의 for문은 초기식, 조건식, 증감식의 반복이 아닌 문자열, 리스트, 튜플안의 원소값을 순서대로 가져오는 반복문
+		실행부분		#들여쓰기(Indentation) tab으로 for문의 실행부분을 구분
+		```
+- ```python
+	for i in [1, 2, 3]:		#리스트 1,2,3을 i에 차례대로 대입하면서 for문 실행 i=1 -> print(1), i=2 -> print(2) 
+		print(i) 		#차례대로 1 2 3 출력 
+		```
+##### enumerate
+- Return an enumerate object
+- 두번째 인자```index(defalut = 0)```와 enumerate함수 첫번째 인자의 데이터를 ``tuple``형태로 ```Return```, 반복문과 함께 사용
+- ```python
+	enumerate(Iterable[str], start) 	# start= index 시작지점 return = (indexN, Iterable[str])
+	```
+- ```python	
+	a =('a', 'b', 'c')
+	for data in enumerate(a):
+		print(data)	#(0, 'a') 출력, 기본값 0부터시작
+				#(1, 'b') 출력
+				#(2, 'c') 출력
+		```
+- ```python
+	a ='abc'
+	for data in enumerate(a[1:],1):	#index 시작지점= 1
+		print(data)
+		#(1, 'b')출력, 설정값 1부터 시작
+		#(2, 'c')출력
+		```
