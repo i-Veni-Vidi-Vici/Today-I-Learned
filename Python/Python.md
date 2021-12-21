@@ -909,13 +909,13 @@
 - ```python
 	while 조건문:	#조건문이 True일때 실행부분을 계속해서 반복, 조건문이 false일때 while문 종료
 		실행부분		#들여쓰기 tab으로 while문의 실행부분을 구분
-		```
+	```
 - ```python	
 	i = 0
 	while i<3:	#조건 i가 3보다 작을때까지만 반복
 		print(i)	#i값 출력
 		i= i+1	#i값 1씩 증가
-		```
+	```
 #### break
 - (특정한 조건을 만족할때) 반복문을 중단시키는 기능
 ##### for
@@ -940,7 +940,7 @@
 	    i= i+1
 	else:
 	    print('not break')	#break되지 않으면 실행됨
-	    ```
+	```
 
 #### continue
 - (특정한 조건을 만족할때) continue 아래 실행부분을 건너뛰고 해당 반복문의 시작부분으로 올라가서 실행
@@ -953,7 +953,7 @@
 		print("Limited to over 5 years old :", num)	#출입제한된 번호출력
 		continue	#아래 실행부분을 건너뛰고 for문 시작부분으로 이동
 	    print("pass :", num)	#출입허가된 번호출력
-	    ```
+	```
 
 ##### while
 - ```python
@@ -965,4 +965,4 @@
 		print("Limited to over 5 years old :", i)	#출입제한된 번호출력
 		continue	#아래 실행부분을 건너뛰고 while문 시작부분으로 이동
 	    print("pass :", i)		#출입허가된 번호출력
-	    ```
+	```
