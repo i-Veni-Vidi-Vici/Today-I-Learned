@@ -905,3 +905,64 @@
 		#(1, 'b')출력, 설정값 1부터 시작
 		#(2, 'c')출력
 	```
+#### while
+- ```python
+	while 조건문:	#조건문이 True일때 실행부분을 계속해서 반복, 조건문이 false일때 while문 종료
+		실행부분		#들여쓰기 tab으로 while문의 실행부분을 구분
+		```
+- ```python	
+	i = 0
+	while i<3:	#조건 i가 3보다 작을때까지만 반복
+		print(i)	#i값 출력
+		i= i+1	#i값 1씩 증가
+		```
+#### break
+- (특정한 조건을 만족할때) 반복문을 중단시키는 기능
+##### for
+- ```python
+  num =0		#문자위치
+  for i in 'abcde':
+    num=num +1	
+    if i =='c':	#i=='c'일때 
+        print(num)	#'c'의 문자위치를 출력하고
+        break	# 반복문 중단
+  else:		#반복문이 break되지 않으면 실행됨
+        print('not break')	#실행x
+	```
+##### while
+- ```python
+	i =0
+	stop = 2
+	while i<3:	#i<3일때까지 반복
+	    if i == stop:	#i ==stop일때
+		print(i, stop)		#i값과 stop값을 출력하고
+		break		#반복문 종료
+	    i= i+1
+	else:
+	    print('not break')	#break되지 않으면 실행됨
+	    ```
+
+#### continue
+- (특정한 조건을 만족할때) continue 아래 실행부분을 건너뛰고 해당 반복문의 시작부분으로 올라가서 실행
+##### for
+- ```python
+	num = 0
+	for i in [1, 3, 5, 3, 3 ,7 ,2]:
+	    num = num +1
+	    if i>4:		#i>4(살) 일때 
+		print("Limited to over 5 years old :", num)	#출입제한된 번호출력
+		continue	#아래 실행부분을 건너뛰고 for문 시작부분으로 이동
+	    print("pass :", num)	#출입허가된 번호출력
+	    ```
+
+##### while
+- ```python
+	i = 0
+	a= [1, 3, 5, 3, 3 ,7 ,2]
+	while i<len(a):	#i가 a의 원소개수보다 작을때까지 반복
+	    i= i+1		#list a의 원소 번호는 1부터 부여
+	    if a[i-1] >4:	#a의 원소가 4보다 클때
+		print("Limited to over 5 years old :", i)	#출입제한된 번호출력
+		continue	#아래 실행부분을 건너뛰고 while문 시작부분으로 이동
+	    print("pass :", i)		#출입허가된 번호출력
+	    ```
