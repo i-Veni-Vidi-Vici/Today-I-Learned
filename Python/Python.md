@@ -966,3 +966,58 @@
 		continue	#아래 실행부분을 건너뛰고 while문 시작부분으로 이동
 	    print("pass :", i)		#출입허가된 번호출력
 	```
+### 함수
+- 입력값을 통해 정의된 로직으로 결과값을 출력하는 것
+- 무한히 재사용 가능한 로직
+- ```매개변수(parameter)``` = 함수에서 입력값을 받는 변수 
+	- 정의 ```def f (a, b, c):```에서 ```a, b, c```가 매개변수
+- ```인수(arguments)``` = 함수의 입력값
+	- 호출 ```f(1, 2, 3)```에서 ```1, 2, 3``` 이 인수 
+
+#### 함수의 형태
+###### 입력값, 반환값 둘 다 x
+- def f1():  # 함수 선언, 입력,반환값 둘다 없음
+    print("hi")	# hi 출력 x
+f1()    # 함수 호출 hi출력o
+
+###### 입력값만 존재
+- ```python
+	def f2(a,b,c):  # 함수 선언, 입력값 존재
+	    print(a*b*c)
+	f2(1,2,3)	#6출력
+	```
+
+###### 반환값만 존재
+- ```python
+	def f3():   # 함수 선언, 반환값 존재
+	    return "a"  #a값 return
+	str= f3()	# return된 값a 저장
+	print(str)	#a 출력
+	```
+
+###### 입력값, 반환값 둘다 존재
+- ```python
+	def f4(a, b, c):	# 함수 선언, 입력,반환값 존재
+	    return a*b*c
+	b= f4(1,2,3)
+	print(b)	# 6출력
+	```
+
+#### default 매개변수
+- 매개변수에 ```default```값을 지정해주면, 그 매개변수를 사용하지 않을때 ```default```값이 사용됨
+- ```python
+	def f5(a, b, c=3):	  	# 마지막 매개변수에 default값 3으로 지정
+	    return a*b*c
+	b= f5(1,2)	# 마지막 인수가 없기 때문에, 매개변수 default 값 3이 사용됨
+	print(b) 		# 6출력
+	```
+
+##### default error
+- ```python
+	def f6(a= 1, b, c):	  	# 첫번째 매개변수에 default값 1으로 지정 error
+	    return a*b*c
+	b= f6(2, 3)	# error
+	print(b) 		# error
+	b= f6( ,2,3)	# error
+	print(b) 		# error
+- 매개변수 ```default```값은 마지막 값부터 사용해야함
