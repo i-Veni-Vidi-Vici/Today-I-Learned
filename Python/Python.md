@@ -1023,3 +1023,50 @@
 	b= f6( ,2,3)	# error
 	print(b) 		# error
 - 매개변수 ```default```값은 마지막 값부터 사용해야함
+##### 매개변수 N개
+- 매개변수를 입력값의 개수에 따라 생성
+- ```def f(*매개변수): ```
+- ```python
+	def f7(*num):	# 매개변수 개수를 입력값의 개수에따라 생성
+	    a =1		# 곱셈로직을 위해 1로설정
+	    for i in num:	# 반복문을 통해 인자의 값을 차례대로 받아옴
+		a = i*a	# 인자의 값 곱셈
+	    return a
+	c= f7(1,2,3)
+	print(c)		# 6출력
+	c= f7(1,2,3,4)
+	print(c) 		# 24출력
+
+### 클래스 - class()
+- 함수의 집합
+- 중복되는 함수를 클래스로 묶어 무한히 재사용가능한 로직
+- 클래스 안의 ```함수(function)```를 ```메서드(method)```라고 부름
+#### 클래스 형태
+- ```python
+	class 이름:		#class 선언
+		def 함수(self):	# class의 메서드(함수)의 첫인자에는 주로 self를 받는데, self인자는 객체를 받아 객체변수를 생성할수 있게 함, self를 변경하거나 생략 가능하기도 함
+			pass	# pass는 아무것도 수행하지않을때 임시로 코드를 작성할때 사용함
+	```
+- ```python	
+	class Cal:
+		def set1(self,x1,x2):
+			self.first =x1
+			self.second =x2
+		def add(self):
+			result =self.first + self.second
+			return result
+	```
+#### 객체 - ```object```
+- 하나의 클래스를 이용하여 무수한 많은 객체를 생성가능
+- ```객체= 클래스()```
+	a= Cal()	# Cal()클래스를 사용하는 a객체생성 
+	a.set1(1,2)	# class Cal()의 메서드 set1(a,1,2)가 대입됨에따라 self.first =x1 -> a.first =1 ,self.second =x2 ->a.second =2 로 객체a 변수가 생성됨
+	print(a.first)	#1출력, a.first = 객체a 변수
+	print(a.add())	#3출력,  result =a.first +a.second -> result = 1+2
+	```
+#### 인스턴스- ```instance```
+- 객체와 비슷한 표현
+- 객체가 어떤 클래스의 객체인지를 설명할때 사용
+- ```a= Cal()```
+	- ```a```는 객체
+	- ```a```객체는 ```Cal()```의 인스턴스
