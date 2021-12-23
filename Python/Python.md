@@ -1059,6 +1059,7 @@
 #### 객체 - ```object```
 - 하나의 클래스를 이용하여 무수한 많은 객체를 생성가능
 - ```객체= 클래스()```
+- ```python
 	a= Cal()	# Cal()클래스를 사용하는 a객체생성 
 	a.set1(1,2)	# class Cal()의 메서드 set1(a,1,2)가 대입됨에따라 self.first =x1 -> a.first =1 ,self.second =x2 ->a.second =2 로 객체a 변수가 생성됨
 	print(a.first)	#1출력, a.first = 객체a 변수
