@@ -1071,3 +1071,62 @@
 - ```a= Cal()```
 	- ```a```는 객체
 	- ```a```객체는 ```Cal()```의 인스턴스
+#### 생성자(constructor) - ```__init__()```
+- ```class```의 초기값을 설정하는 함수
+- 객체가 생성될때 자동으로 호출되는 메서드
+##### 생성자 형태
+- ```python
+	class 이름:
+		def __init__(self):
+			pass
+	a= Cal()
+	print(a.add())	# error출력,  set1 메서드로 객체변수를 생성못했기때문에 error, 매번 set1을 호출하는대신 초기값을 설정하는것이 더 편리
+	```
+- ```python
+	class Cal:
+		def __init__(self,x1,x2):
+			self.first =x1
+			self.second =x2
+		def add(self):
+			result =self.first + self.second
+			return result
+	a= Cal() 	#error 출력, 인자x1, x2를 입력해줘야함
+	a= Cal(1,2)	# self.first =x1 -> a.first =1 ,self.second =x2 ->a.second =2
+	```
+
+#### 소멸자(destructor) - ```__del__()```
+- 객체가 소멸될때 자동으로 호출되는 함수
+##### 소멸자 형태
+- ```python
+	class 이름:
+		def __del__(self):
+			pass
+	```
+- ```python
+	calss Cal:
+		def __del__(self):
+			print("Delete")
+	```
+
+#### 클래스 상속 - ```Inheritance```
+- 기존 클래스를 변경하지 않고, 기능을 추가하거나 기능을 변경하려할때 사용
+- ```클래스2```에 기존 ```클래스1```의 기능을 그대로 사용할수있게해주면서 기능 추가, 변경 가능
+##### 클래스 상속 형태1
+- 부모클래스에서 상속받을 생성자나 메서드의 수정이 필요없는경우 자식클래스에서 정의생략후 부모클래스 호출이 가능
+- ```python
+	class 상속받는클래스(상속클래스(부모클래스)):
+		pass
+	```
+- ```python
+	class CopyCal(Cal):
+		pass
+	a= CopyCal(1,2)
+	print(a.add())	# 3출력
+	```
+##### 클래스 상속 형태2
+- 부모 생성자(메서드)와 기능이같다면 자식클래스의 생성자(메서드) 생략해도 부모생성자(메서드) 자동으로 호출, 변경이 필요하면 메서드 오버라이딩으로 재정의를 하거나 부모 생성자(메서드)를 호출하여 추가적인 기능 작성가능
+- ```python
+	class 자식클래스(부모클래스):
+		def __init__(self,부모클래스 생성자 매개변수):
+			super(현재클래스, self).__init__(부모클래스 생성자 매개변수) #부모생성자호출,super에 현재클래스와 self를 넣어 명확히 표현 생략가능,  super().__init__(부모클래스 생성자 매개변수)로 super안 생량가능, 생성자뿐만아니라 일반메서드에서도 사용가능
+	```
