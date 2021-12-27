@@ -1130,3 +1130,70 @@
 		def __init__(self,부모클래스 생성자 매개변수):
 			super(현재클래스, self).__init__(부모클래스 생성자 매개변수) #부모생성자호출,super에 현재클래스와 self를 넣어 명확히 표현 생략가능,  super().__init__(부모클래스 생성자 매개변수)로 super안 생량가능, 생성자뿐만아니라 일반메서드에서도 사용가능
 	```
+###### 기능 추가
+- ```python
+	class TwoCal(Cal):
+		def multi(self):
+			result = self.first* self.second
+			return result
+	a= TwoCal(2,4)
+	print(a.add())	# 6출력, result =2+4
+	print(a.multi())	# 8출력, result =2*4
+	```
+
+##### 클래스 상속기능 변경(재정의) - ```메서드 오버라이딩(method overriding)```
+- 부모클래스 즉 상속클래스의 메소드를 변경(재정의)하는것
+- 메서드가 오버라이딩되면 부모클래스의 메서드가 아니라 오버라이딩된 메서드가 호출됨
+- ```python
+	class StringCal(Cal):
+		def add(self):
+			result =self.first + self.second
+			return f'{self.first}+{self.second}={result}'
+	a =StringCal(2,3)	
+	print(a.add())	#2+3=5출력, 부모클래스인 Cal의 add()가 아니라 오버라이딩(재정의)된 StringCal의 add()가 호출됨
+	```
+
+#### 클래스 변수
+- ```method```내부가아닌 클래스 내부에 변수를 선언한것
+- ```python
+	class Cal:
+		today ='2021/12/8'
+	a= Cal(1,2)
+	print(a.today)	#2021/12/8출력
+	print(Cal.today)	#2021/12/8출력
+	a.today= '2021/12/9'	#클래스변수 변경
+	print(a.today)		#2021/12/9출력
+	b= Cal(1,2)
+	print(b.today)		#2021/12/9출력, 클래스변수는 모든 객체에 영향을 미침
+	```
+#### 절대값- ```abs()```
+- Return the absolute value of the argument
+- ```abs()```인자의 절대값을 ```return```
+- ```python
+	abs(x)	# x의 절대값 return
+	print(abs(-1))	# 1출력, -1의 절대값 1 return
+	```
+
+#### 추상 클래스
+- 부모클래스를 만들때, 자식클래스에서 수정되거나 오버라이딩(재정의)이 필요한 메서드가 존재할때 자식클래스에서 반드시 오버라이딩을 해야 작동하는 것
+- 추상메서드를 모두 오버라이딩한 클래스만 사용가능
+- abc모듈 사용
+##### 추상 클래스 형태
+- ```python
+	from abc import *
+	class 추상(부모)클래스(metaclass=ABCMeta):
+		@abstractmethod		#추상 메서드 위에 작성
+		def 메서드():		#추상 메서드
+			pass
+	```
+- ```python
+	from abc import *
+	class Cal(metaclass=ABCMeta):	# 추상 클래스 생성
+	    @abstractmethod		#추상 메서드 위에 작성
+	    def add(self,x1,x2):		#추상 메서드
+		pass
+	    @abstractmethod		#추상 메서드 위에 작성
+	    def multi(self,x1,x2):		#추상 메서드
+		print("multi")
+	a =Cal()        		#error	추상 메서드가 2개 존재하기때문에 error	
+	```
