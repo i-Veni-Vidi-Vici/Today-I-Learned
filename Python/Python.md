@@ -1239,7 +1239,7 @@
 	```
 
 #### 날짜출력 형식변경 - ```strftime()```
-- Format using strftime()
+- Format using ```strftime()```
 - ```python
 	print(today.strftime('%a'))	#Tue출력,  요일 짧게 출력
 	print(today.strftime('%A'))	#Tuesday, 요일 길게 출력
