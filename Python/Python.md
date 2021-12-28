@@ -905,6 +905,10 @@
 		#(1, 'b')출력, 설정값 1부터 시작
 		#(2, 'c')출력
 	```
+- ```python
+	a=[1,2,3]
+	print(list(enumerate(a)))	#[(0, 1), (1, 2), (2, 3)]출력
+	```
 #### while
 - ```python
 	while 조건문:	#조건문이 True일때 실행부분을 계속해서 반복, 조건문이 false일때 while문 종료
