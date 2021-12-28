@@ -1201,3 +1201,81 @@
 		print("multi")
 	a =Cal()        		#error	추상 메서드가 2개 존재하기때문에 error	
 	```
+- ```python
+	class OneCal(Cal):
+	    def add(self,x1,x2):	#추상 메서드 오버라이딩
+		self.first =x1
+		self.second =x2
+		return self.first+self.second
+	a= OneCal()  	#error	추상 메서드가 1개 존재하기때문에 error
+	class TwoCal(Cal):
+	    def add(self,x1,x2):	#추상 메서드 오버라이딩
+		self.first =x1
+		self.second =x2
+		return self.first+self.second
+	    def multi(self,x1,x2):	#추상 메서드 오버라이딩
+		self.first =x1
+		self.second =x2
+		return self.first*self.second
+	a= TwoCal()	#success
+	print(a.add(1,2))	#3출력
+	print(a.multi(2,4))	#8출력
+	```
+
+#### 날짜관련된 모듈 - ```datetime```
+- datetime(year, month, day[, hour[, minute[, second[, microsecond[,tzinfo]]]]])
+- ```python
+	import datetime 	# datetime모듈 불러오기
+	today = datetime.datetime(2021,12,7)	# datetime(year, month, day[, hour[, minute[, second[, microsecond[,tzinfo]]]]])이용
+	print(today)	# 2021-12-07 00:00:00출력
+	```
+
+#### 현재 시간 - ```now()```
+- Construct a datetime from time.time() and optional time zone info
+- ```python
+	now = datetime.datetime.now()
+	print(now)	#2021-12-07 14:15:23.794419출력, 현재시간 출력
+	print (f'{now.year}년 {now.month}월 {now.day}일 {now.hour}시 {now.minute}분 {now.second}초')		#datetime(year, month, day[, hour[, minute[, second[, microsecond[,tzinfo]]]]])을 이용하여 데이터 쪼개기 가능
+	```
+
+#### 날짜출력 형식변경 - ```strftime()```
+- Format using strftime()
+- ```python
+	print(today.strftime('%a'))	#Tue출력,  요일 짧게 출력
+	print(today.strftime('%A'))	#Tuesday, 요일 길게 출력
+	print(today.strftime('%c'))	#Tue Dec  7 00:00:00 2021 출력
+	print(today.strftime('%x'))	#12/07/21출력
+	print(today.strftime('%X'))	#00:00:00 출력, 시간:분:초
+	```
+
+#### 날짜 연산 - ```timedelta```
+- Represent the difference between two datetime objects
+- 뺄셈시 ```datetime.timedelta return```
+- ```python
+	today = datetime.datetime(2021,12,7)
+	day1 =datetime.datetime(2021,12,1)
+	day2 =today-day1		# day2는 timedelta가 됨
+	print(day2)	#6 days, 0:00:00출력
+	print(datetime.timedelta(days=6))	# 6 days, 0:00:00출력 
+	```
+
+#### 지연 함수 - ```sleep()```
+- ```sleep(seconds)```
+- Delay execution for a given number of seconds. The argument may be a floating point number for subsecond precision
+- ```python
+	import time	#sleep함수 사용
+	import datetime	# now함수사용
+	while 1:
+	    print(datetime.datetime.now())	# 현재시간을 출력
+	    time.sleep(1)			#1초후 반복
+	```
+#### 예외처리
+- 에러를 예외처리하는 방법
+- ```python
+	per = ["1", "", "3"]	# "" 는 int로 형변환 에러
+	for i in per:
+	    try:		#error가아닐때
+		print(int(i))
+	    except:	#error날때
+		print(0)  #정답
+	```
