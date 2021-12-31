@@ -161,4 +161,107 @@
   print(result) #정답
   ```
 
+#  021~030
+
+- ```python
+  # 021 문자열 인덱싱
+  # letters가 바인딩하는 문자열에서 첫번째와 세번째 문자를 출력하세요.
+  # >> letters = 'python'
+  # 실행 예
+  # p t
+  from typing import Reversible
+
+
+  letters = 'python'
+  print(letters[0], letters[2]) #정답
+  ```
+- ```python
+  # 022 문자열 슬라이싱
+  # 자동차 번호가 다음과 같을 때 뒤에 4자리만 출력하세요.
+  # >> license_plate = "24가 2210"
+  # 실행 예: 2210
+  license_plate = "24가 2210"
+  print(license_plate[4:]) #정답
+  # 정답 print(license_plate[-4:])
+  ```
+- ```python
+  # 023 문자열 인덱싱
+  # 아래의 문자열에서 '홀' 만 출력하세요.
+  # >> string = "홀짝홀짝홀짝"
+  # 실행 예:
+  # 홀홀홀
+  string = "홀짝홀짝홀짝"
+  print(string[0],string[2],string[4], sep="") #정답
+  # 정답 print(string[::2]) ★★ 공부필요 슬라이싱 완료
+  ```
+- ```python
+  # 024 문자열 슬라이싱
+  # 문자열을 거꾸로 뒤집어 출력하세요.
+  # >> string = "PYTHON"
+  # 실행 예:
+  # NOHTYP
+  string1 ="PYTHON"
+  print(string1[:])
+  # 정답 print(string[::-1])
+  ```
+- ```python
+  # 025 문자열 치환
+  # 아래의 전화번호에서 하이푼 ('-')을 제거하고 출력하세요.
+  # >> phone_number = "010-1111-2222"
+  # 실행 예
+  # 010 1111 2222
+  phone_number = "010-1111-2222"
+  print(phone_number[:3],phone_number[4:8],phone_number[9:13]) #정답
+  # 정답 phone_number1 = phone_number.replace("-", " ") ★★ 공부필요 replace 완료
+
+  ```
+- ```python
+  # 026 문자열 다루기
+  # 25번 문제의 전화번호를 아래와 같이 모두 붙여 출력하세요.
+  # 실행 예
+  # 01011112222
+  phone_number = "010-1111-2222"
+  phone_number1 = phone_number.replace("-", "")
+  print(phone_number1)    #정답
+  ```
+- ```python
+  # 027 문자열 다루기
+  # url 에 저장된 웹 페이지 주소에서 도메인을 출력하세요.
+  # >> url = "http://sharebook.kr"
+  # 실행 예:
+  # kr
+  url = "http://sharebook.kr"
+  print(url[-2:]) #정답
+  # url = "http://sharebook.kr"
+  # url_split = url.split('.')    ★★ 공부필요 split 완료
+  # print(url_split[-1])
+  ```
+- ```python
+  # 028 문자열은 immutable
+  # 아래 코드의 실행 결과를 예상해보세요.
+  # >> lang = 'python'
+  # >> lang[0] = 'P'
+  # >> print(lang)
+  # 정답 error 문자열은 수정불가 ★★ 공부필요 완료
+  ```
+- ```python
+  # 029 replace 메서드
+  # 아래 문자열에서 소문자 'a'를 대문자 'A'로 변경하세요.
+  # >> string = 'abcdfe2a354a32a'
+  # 실행 예:
+  # Abcdfe2A354A32A
+  string = 'abcdfe2a354a32a'
+  string = string.replace('a','A')
+  print(string) #정답
+  ```
+- ```python
+  # 030 replace 메서드
+  # 아래 코드의 실행 결과를 예상해보세요.
+  # >> string = 'abcd'
+  # >> string.replace('b', 'B')
+  # >> print(string)
+  # 정답 abcd 문자열은 변경할수 없는 자료형
+  a= [1,2,3]
+  print(a[2:0:-1])
+  ```
 
