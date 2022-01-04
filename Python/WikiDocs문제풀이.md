@@ -353,4 +353,67 @@
     data= data.replace(' ','')
     print(data) #정답
     # 정답 data1 = data.strip() ★★ strip 공부필요 완료
-  ```
+    ```
+# 041~050
+ - ```python
+    # 041 upper 메서드
+    # 다음과 같은 문자열이 있을 때 이를 대문자 BTC_KRW로 변경하세요.
+    ticker = "btc_krw"
+    print(ticker.upper()) #정답 ★ upper()공부필요 완료
+    ```
+ - ```python
+    # 042 lower 메서드
+    # 다음과 같은 문자열이 있을 때 이를 소문자 btc_krw로 변경하세요.
+    ticker = "BTC_KRW"
+    print(ticker.lower()) #정답 ★ lower()공부필요 완료
+    ```
+ - ```python
+    # 043 capitalize 메서드
+    # 문자열 'hello'가 있을 때 이를 'Hello'로 변경해보세요.
+    print('hello'.capitalize())
+    print('hello'.replace('h','H'))     #정답  ★ capitalize 공부 필요 완료
+    ```
+ - ```python
+    # 044 endswith 메서드
+    # 파일 이름이 문자열로 저장되어 있을 때 endswith 메서드를 사용해서 파일 이름이 'xlsx'로 끝나는지 확인해보세요.
+    file_name = "보고서.xlsx"
+    print(file_name.endswith('xlsx'))   #정답 ★ endswith 공부 필요 완료
+    ```
+ - ```python
+    # 045 endswith 메서드
+    # 파일 이름이 문자열로 저장되어 있을 때 endswith 메서드를 사용해서 파일 이름이 'xlsx' 또는 'xls'로 끝나는지 확인해보세요.
+    file_name = "보고서.xlsx"
+    print(file_name.endswith('xlsx'), file_name.endswith('xls')) #정답 
+    ```
+ - ```python
+    # 046 startswith 메서드
+    # 파일 이름이 문자열로 저장되어 있을 때 startswith 메서드를 사용해서 파일 이름이 '2020'로 시작하는지 확인해보세요.
+    file_name = "2020_보고서.xlsx"
+    print(file_name.startswith('2020')) # 정답 ★ startswith 공부 필요 완료
+    ```
+ - ```python
+    # 047 split 메서드
+    # 다음과 같은 문자열이 있을 때 공백을 기준으로 문자열을 나눠보세요.
+    a = "hello world"
+    print(a.split()) #정답 ★ 복습 완료
+    ```
+ - ```python
+    # 048 split 메서드
+    # 다음과 같이 문자열이 있을 때 btc와 krw로 나눠보세요.
+    ticker = "btc_krw"
+    print(ticker.split('_')) # 정답
+    ```
+ - ```python
+    # 049 split 메서드
+    # 다음과 같이 날짜를 표현하는 문자열이 있을 때 연도, 월, 일로 나눠보세요.
+    date = "2020-05-01"
+    print(date.split('-'))  # 정답
+    ```
+ - ```python
+    # 050 rstrip 메서드
+    # 문자열의 오른쪽에 공백이 있을 때 이를 제거해보세요.
+    data = "039490     "
+    print(data.strip())
+    print(data.rstrip())    #정답
+    ```
+
