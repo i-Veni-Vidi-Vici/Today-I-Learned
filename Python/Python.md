@@ -444,10 +444,14 @@
 #### list 정렬 - ```sort()```
 - Sort the list in ascending order and return None
 - ```python
+	sort((key= lambda x :), (reverse = )) # key와 reverse위치 변경 가능
 	list.sort(reverse= False) 	#list를 오름차순으로 정렬,(reverse= False)기본값으로 생략가능, list원소의 data type이 동일해야함
 	list.sort(reverse= True)	#list를 내림차순으로 정렬
+	```
+
+- ```python
 	a= [3, 2, 1]
-	a.sort()		//a list를 오름차순으로 정렬
+	a.sort()		#a list를 오름차순으로 정렬
 	a.sort(reverse= False)		#a list를 오름차순으로 정렬
 	print(a) ->[1, 2, 3]
 	a.sort(reverse= True)		#a list를 내림차순으로 정렬
@@ -462,6 +466,50 @@
 	a= [[3], [1, 4 ,5], [1]]
 	a.sort()		#a list를 오름차순으로 정렬
 	print(a) ->[[1], [1, 4, 5], [3]]
+	```
+##### key 매개변수
+- ```key``` 옵션에 지정된 함수의 결과에 따라 정렬
+- ```key``` 매개변수 값은 정렬 목적으로 사용할 ```key```를 ```return```하는 함수
+- ```key```가 여러개 있을시 순서대로 우선순위부여 (ex 2번째 조건이 1번째 조건을 위배하면서 정렬x)
+- ```(-)```로 ```reverse```를 표현 가능
+- ```python
+	# 두번째 조건이 첫번째 조건에 위배될 경우
+	# 1숫자정렬 후 그 틀에서 2문자정렬
+	list =['3 b', '2 a', '1 ab' ]
+	list.sort(key= lambda x: (x.split()[0] ,x.split()[1] ))	# 위배되므로 두번째 조건이 전혀 소용이 없음
+	print(list) # ['1 ab', '2 a', '3 b']	
+	# 1문자정렬 후 그 틀에서 2숫자정렬 
+	list =['3 b', '2 a', '1 ab' ]
+	list.sort(key= lambda x: (x.split()[1], x.split()[0] ))
+	print(list) # ['2 a', '1 ab', '3 b']	# 위배되므로 두번째 조건이 전혀 소용이 없음
+
+	# 두번째 조건이 첫번째 조건에 위배x
+	# 1문자정렬 후 그 틀에서 2숫자정렬
+	list =['3 b', '2 a', '1 a' ]
+	list.sort(key= lambda x: (x.split()[1], x.split()[0] ))	# [ '2 a', '1 a', '3 b'] -> ['1 a', '2 a', '3 b']
+	print(list) # ['1 a', '2 a', '3 b']
+	# 1숫자 정렬 후 그 틀에서 2문자정렬
+	list =['3 b', '2 a', '1 a' ]
+	list.sort(key= lambda x: (x.split()[0], x.split()[1]  ))
+	print(list) # ['1 a', '2 a', '3 b']
+	```
+
+#### 모든 iterable 데이터 정렬 - ```sorted()```
+- Return a new list containing all items from the iterable
+- 정렬된 새로운 리스트를 ```Return```
+- 모든 ```iterable``` 데이터 사용 가능(리스트, 딕셔너리, 튜플 등)
+- ```python
+	sorted(data, (key=), (reverse=))	# key 와 reverse 위치는 서로 바뀌어도 가능
+	```
+- ```python
+	# 튜플 정렬
+	t = (3,2,1)
+	print(sorted(t))    # [1, 2, 3]
+	# 딕셔너리 정렬,  key 사용
+	d = {'a':3, 'b':1, 'c':2}
+	print(sorted(d.items(), key = lambda x: x[1]))  # [('b', 1), ('c', 2), ('a', 3)]
+	# reverse 사용
+	print(sorted(d.items(), key = lambda x: -x[1]))  # [('a', 3), ('c', 2), ('b', 1)]
 	```
 
 #### list 값x의 개수 - ```count(x)```
