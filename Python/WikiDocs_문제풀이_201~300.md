@@ -549,6 +549,128 @@
   # for x in numpy.arange(0.0 , 5.1, 0.1):
   #     print(x)  # 정답
   ```
+# 251~260
+
+- ```python
+  # 251 클래스, 객체, 인스턴스
+  # 클래스, 객체, 인스턴스에 대해 설명해봅시다.
+  # 클래스는 함수의 집합이라고도 말할수있는 무한히 재사용가능한 틀이다
+  # 객체는 클래스를 무한히 재사용할수있는 사용자또는 클래스의 결과물이라고 할수있다. 
+  # 인스턴스는 객체와 비슷한 용어로 객체와 클래스와 연관지어 설명할때 사용된다. 객체는 클래스의 인스턴스다
+  ```
+- ```python
+  # 252 클래스 정의
+  # 비어있는 사람 (Human) 클래스를 "정의" 해보세요.
+  # class Human:
+  #     pass  #정답
+  ```
+- ```python
+  # 253 인스턴스 생성
+  # 사람 (Human) 클래스의 인스턴스를 "생성" 하고 이를 areum 변수로 바인딩해보세요.
+  # class Human:
+  #     pass
+  # areum = Human() #정답
+  ```
+- ```python
+  # 254 클래스 생성자-1
+  # 사람 (Human) 클래스에 "응애응애"를 출력하는 생성자를 추가하세요.
+  # >>> areum = Human()
+  # 응애응애
+  # class Human:
+  #     def __init__(self):
+  #         print("응애응애")
+  # areum = Human()   # 정답  
+  ```
+- ```python
+  # 255 클래스 생성자-2
+  # 사람 (Human) 클래스에 (이름, 나이, 성별)을 받는 생성자를 추가하세요.
+  # >>> areum = Human("아름", 25, "여자")
+  # class Human:
+  #     def __init__(self, 이름, 나이, 성별):
+  #         self.name = 이름
+  #         self.age = 나이
+  #         self.gender =성별
+  # areum =Human("아름", 25, "여자")
+  # print(areum.name)     #정답
+  ```
+- ```python
+  # 256 인스턴스 속성에 접근
+  # 255에서 생성한 인스턴스의 이름, 나이, 성별을 출력하세요. 인스턴스 변수에 접근하여 값을 출력하면 됩니다.
+  # 이름: 조아름, 나이: 25, 성별: 여자
+  # 인스턴스 변수에 접근하여 값을 가져오는 예
+  # >>> areum.age
+  # 25
+  # class Human:
+  #     def __init__(self, 이름, 나이, 성별):
+  #         self.name = 이름
+  #         self.age = 나이
+  #         self.gender =성별
+  # areum =Human("아름", 25, "여자")
+  # print(f'이름: {areum.name}, 나이: {areum.age}, 성별: {areum.gender}') #정답
+  ```
+- ```python
+  # 257 클래스 메소드 - 1
+  # 사람 (Human) 클래스에서 이름, 나이, 성별을 출력하는 who() 메소드를 추가하세요.
+  # >>> areum.who()
+  # 이름: 조아름, 나이: 25, 성별: 여자
+  # class Human:
+  #     def __init__(self, 이름, 나이, 성별):
+  #         self.name = 이름
+  #         self.age = 나이
+  #         self.gender =성별
+  #     def who(self):
+  #         print(f'이름: {self.name}, 나이: {self.age}, 성별: {self.gender}')
+  # areum =Human("아름", 25, "여자")
+  # areum.who() #정답
+  ```
+- ```python
+  # 258 클래스 메소드 - 2
+  # 사람 (Human) 클래스에 (이름, 나이, 성별)을 받는 setInfo 메소드를 추가하세요.
+  # >>> areum = Human("모름", 0, "모름")
+  # >>> areum.setInfo("아름", 25, "여자")
+  # class Human:
+  #     def __init__(self, 이름, 나이, 성별):
+  #         self.name = 이름
+  #         self.age = 나이
+  #         self.gender =성별
+  #     def setInfo(self, 이름, 나이, 성별):
+  #         self.name = 이름
+  #         self.age = 나이
+  #         self.gender =성별
+  #     def who(self):
+  #         print(f'이름: {self.name}, 나이: {self.age}, 성별: {self.gender}')
+  # areum = Human("모름", 0, "모름")
+  # areum.who() 
+  # areum.setInfo("아름", 25, "여자")
+  # areum.who()   #정답
+  ```
+- ```python
+  # 259 클래스 소멸자
+  # 사람 (human) 클래스에 "나의 죽음을 알리지 말라"를 출력하는 소멸자를 추가하세요.
+  # >>> areum = Human("아름", 25, "여자")
+  # >>> del areum
+  # 나의 죽음을 알리지 말라
+  # class Human:
+  #     def __init__(self, 이름, 나이, 성별):
+  #         self.name = 이름
+  #         self.age = 나이
+  #         self.gender =성별
+  #     def __del__(self):
+  #         print("나의 죽음을 알리지 말라")
+  # areum = Human("아름", 25, "여자")
+  # del areum #정답
+  ```
+- ```python
+  # 260 에러의 원인
+  # 아래와 같은 에러가 발생한 원인에 대해 설명하세요.
+  # >>> >>> myStock = OMG()
+  # >>> myStock.print()
+  # TypeError Traceback (most recent call last)
+  # <ipython-input-233-c85c04535b22> in <module>()
+  # ----> myStock.print()
+  # TypeError: print() takes 0 positional arguments but 1 was given
+  # 함수에 self인자가 없어서 객체가 self로 전달되지않았기때문에 메소드를 단독으로 사용불가 #정답
+  ```
 
 
 
