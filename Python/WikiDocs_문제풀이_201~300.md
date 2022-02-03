@@ -822,5 +822,281 @@
   # for x in list1:
   #     print(x.code, x.PER)  #정답
   ```
+# 271~280
+
+- ```python
+  # 271 Account 클래스
+  # 은행에 가서 계좌를 개설하면 은행이름, 예금주, 계좌번호, 잔액이 설정됩니다. Account 클래스를 생성한 후 생성자를 구현해보세요. 생성자에서는 예금주와 초기 잔액만 입력 받습니다. 은행이름은 SC은행으로 계좌번호는 3자리-2자리-6자리 형태로 랜덤하게 생성됩니다.
+  # 은행이름: SC은행
+  # 계좌번호: 111-11-111111
+  # import random
+  # class Account:
+  #     def __init__(self, 예금주, 초기잔액):
+  #         self.bankname= 'SC은행'
+  #         code1= random.randint(000,999)
+  #         code2= random.randint(000,99)
+  #         code3= random.randint(000,999999)
+  #         self.code= f'{code1:03d}-{code2:02d}-{code3:06d}'
+  #         self.name= 예금주
+  #         self.money =초기잔액
+  # a= Account('나',300)
+  # print(a.code) #정답
+  ```
+- ```python
+  # 272 클래스 변수
+  # 클래스 변수를 사용해서 Account 클래스로부터 생성된 계좌 객체의 개수를 저장하세요.
+  # 정답 import random
+  # class Account:
+  #     num1=0
+  #     def __init__(self, 예금주, 초기잔액):
+
+  #         self.bankname= 'SC은행'
+  #         code1= random.randint(000,999)
+  #         code2= random.randint(000,99)
+  #         code3= random.randint(000,999999)
+  #         self.code= f'{code1:03d}-{code2:02d}-{code3:06d}'
+  #         self.name= 예금주
+  #         self.money =초기잔액
+  #         Account.num1 +=1 
+  # a= Account('나',300)
+  # b= Account('나',3000)
+  # print(Account.num1) #정답
+  ```
+- ```python
+  # 273 클래스 변수 출력
+  # Account 클래스로부터 생성된 계좌의 개수를 출력하는 get_account_num() 메서드를 추가하세요.
+  # import random
+  # class Account:
+  #     num1=0
+  #     def __init__(self, 예금주, 초기잔액):
+
+  #         self.bankname= 'SC은행'
+  #         code1= random.randint(000,999)
+  #         code2= random.randint(000,99)
+  #         code3= random.randint(000,999999)
+  #         self.code= f'{code1:03d}-{code2:02d}-{code3:06d}'
+  #         self.name= 예금주
+  #         self.money =초기잔액
+  #         Account.num1 +=1 
+  #     def get_account_num(self):
+  #         return print(Account.num1)
+  # a= Account('나',300)
+  # a.get_account_num()   #정답
+  ```
+- ```python
+  # 274 입금 메서드
+  # Account 클래스에 입금을 위한 deposit 메서드를 추가하세요. 입금은 최소 1원 이상만 가능합니다.
+  # import random
+  # class Account:
+  #     num1=0
+  #     def __init__(self, 예금주, 초기잔액):
+
+  #         self.bankname= 'SC은행'
+  #         code1= random.randint(000,999)
+  #         code2= random.randint(000,99)
+  #         code3= random.randint(000,999999)
+  #         self.code= f'{code1:03d}-{code2:02d}-{code3:06d}'
+  #         self.name= 예금주
+  #         self.money =초기잔액
+  #         Account.num1 +=1 
+  #     def get_account_num(self):
+  #         return print(Account.num1)
+  #     def deposit(self, 입금):
+  #         if 입금>=1:
+  #             self.money+=입금
+  # a= Account('나',300)
+  # a.deposit(1)
+  # print(a.money)    #정답
+  ```
+- ```python
+  # 275 출금 메서드
+  # Account 클래스에 출금을 위한 withdraw 메서드를 추가하세요. 출금은 계좌의 잔고 이상으로 출금할 수는 없습니다.
+  # import random
+  # class Account:
+  #     num1=0
+  #     def __init__(self, 예금주, 초기잔액):
+
+  #         self.bankname= 'SC은행'
+  #         code1= random.randint(000,999)
+  #         code2= random.randint(000,99)
+  #         code3= random.randint(000,999999)
+  #         self.code= f'{code1:03d}-{code2:02d}-{code3:06d}'
+  #         self.name= 예금주
+  #         self.money =초기잔액
+  #         Account.num1 +=1 
+  #     def get_account_num(self):
+  #         return print(Account.num1)
+  #     def deposit(self, 입금):
+  #         if 입금>=1:
+  #             self.money+=입금
+  #     def withdraw(self, 출금):
+  #         if 출금>self.money:
+  #             print("잔액이 부족합니다")
+  #         else:
+  #             self.money-=출금
+  # a= Account('나',300)
+  # a.withdraw(30)
+  # print(a.money)    #정답
+  ```
+- ```python
+  # 276 정보 출력 메서드
+  # Account 인스턴스에 저장된 정보를 출력하는 display_info() 메서드를 추가하세요. 잔고는 세자리마다 쉼표를 출력하세요.
+  # 은행이름: SC은행
+  # 예금주: 파이썬
+  # 계좌번호: 111-11-111111
+  # 잔고: 10,000원
+  # import random
+  # class Account:
+  #     num1=0
+  #     def __init__(self, 예금주, 초기잔액):
+
+  #         self.bankname= 'SC은행'
+  #         code1= random.randint(000,999)
+  #         code2= random.randint(000,99)
+  #         code3= random.randint(000,999999)
+  #         self.code= f'{code1:03d}-{code2:02d}-{code3:06d}'
+  #         self.name= 예금주
+  #         self.money =초기잔액
+  #         Account.num1 +=1 
+  #     def get_account_num(self):
+  #         return print(Account.num1)
+  #     def deposit(self, 입금):
+  #         if 입금>=1:
+  #             self.money+=입금
+  #     def withdraw(self, 출금):
+  #         if 출금>self.money:
+  #             print("잔액이 부족합니다")
+  #         else:
+  #             self.money-=출금
+  #     def display_info(self):
+  #         print(f'은행이름: {self.bankname}')
+  #         print(f'예금주: {self.name}')
+  #         print(f'계좌번호: {self.code}')
+  #         self.stmoney= ''
+  #         print(len(str(self.money)))
+  #         for x in range(len(str(self.money))):
+  #             if (x%3) ==0 and x!=0:
+  #                 self.stmoney+=','
+  #             self.stmoney+=str(self.money)[x]
+
+  #         print(f'잔고: {self.stmoney}원')
+  # a= Account('나',3000)
+  # a.display_info()  #정답
+  ```
+- ```python
+  # 277 이자 지급하기
+  # 입금 횟수가 5회가 될 때 잔고를 기준으로 1%의 이자가 잔고에 추가되도록 코드를 변경해보세요.
+  # import random
+  # class Account:
+  #     num1=0
+
+  #     def __init__(self, 예금주, 초기잔액):
+
+  #         self.bankname= 'SC은행'
+  #         code1= random.randint(000,999)
+  #         code2= random.randint(000,99)
+  #         code3= random.randint(000,999999)
+  #         self.code= f'{code1:03d}-{code2:02d}-{code3:06d}'
+  #         self.name= 예금주
+  #         self.money =초기잔액
+  #         self.count =1
+  #         Account.num1 +=1 
+  #     def get_account_num(self):
+  #         return print(Account.num1)
+  #     def deposit(self, 입금):
+  #         if 입금>=1:
+  #             self.money+=입금
+  #             self.count+=1
+  #             if self.count%5 ==0:
+  #                 self.money+=self.money*0.01
+  #     def withdraw(self, 출금):
+  #         if 출금>self.money:
+  #             print("잔액이 부족합니다")
+  #         else:
+  #             self.money-=출금
+  #     def display_info(self):
+  #         print(f'은행이름: {self.bankname}')
+  #         print(f'예금주: {self.name}')
+  #         print(f'계좌번호: {self.code}')
+  #         self.stmoney= ''
+  #         print(len(str(self.money)))
+  #         for x in range(len(str(self.money))):
+  #             if (x%3) ==0 and x!=0:
+  #                 self.stmoney+=','
+  #             self.stmoney+=str(self.money)[x]
+
+  #         print(f'잔고: {self.stmoney}원')
+  # a= Account('나',3000) #정답
+  ```
+- ```python
+  # 278 여러 객체 생성
+  # Account 클래스로부터 3개 이상 인스턴스를 생성하고 생성된 인스턴스를 리스트에 저장해보세요.
+  # 279 객체 순회
+  # 반복문을 통해 리스트에 있는 객체를 순회하면서 잔고가 100만원 이상인 고객의 정보만 출력하세요
+  # 280 입출금 내역
+  # 입금과 출금 내역이 기록되도록 코드를 업데이트 하세요. 입금 내역과 출금 내역을 출력하는 deposit_history와 withdraw_history 메서드를 추가하세요.
+  # import random
+  # class Account:
+  #     num1=0
+  #     list1=[]
+  #     def __init__(self, 예금주, 초기잔액):
+
+  #         self.bankname= 'SC은행'
+  #         self.de =[]
+  #         self.wi =[]
+  #         code1= random.randint(000,999)
+  #         code2= random.randint(000,99)
+  #         code3= random.randint(000,999999)
+  #         self.code= f'{code1:03d}-{code2:02d}-{code3:06d}'
+  #         self.name= 예금주
+  #         self.money =초기잔액
+  #         self.count =0
+  #         self.count2 =0
+  #         Account.num1 +=1 
+  #         Account.list1.append(self)
+  #     def get_account_num(self):
+  #         return print(Account.num1)
+  #     def deposit(self, 입금):
+  #         if 입금>=1:
+  #             self.money+=입금
+  #             self.count+=1
+  #             if self.count%5 ==0:
+  #                 self.money+=self.money*0.01
+  #             self.de.append(f'{self.count}. 입금액:{입금} 잔액:{self.money}')
+  #     def deposit_history(self):
+  #         print(self.de)
+  #     def withdraw(self, 출금):
+  #         if 출금>self.money:
+  #             print("잔액이 부족합니다")
+  #         else:
+  #             self.money-=출금
+  #             self.count2+=1
+  #             self.wi.append(f'{self.count2}. 출금액:{출금} 잔액:{self.money}')
+  #     def withdraw_history(self):
+  #         print(self.wi)
 
 
+  #     def display_info(self):
+  #         print(f'은행이름: {self.bankname}')
+  #         print(f'예금주: {self.name}')
+  #         print(f'계좌번호: {self.code}')
+  #         self.stmoney= ''
+  #         print(len(str(self.money)))
+  #         for x in range(len(str(self.money))):
+  #             if (x%3) ==0 and x!=0:
+  #                 self.stmoney+=','
+  #             self.stmoney+=str(self.money)[x]
+
+  #         print(f'잔고: {self.stmoney}원')
+  # a= Account('나',3000) #정답
+  # b= Account('너',1000000)
+  # c= Account('니',3000)
+  # print(Account.list1)
+  # for x in Account.list1:
+  #     if x.money>=1000000:
+  #         x.display_info()
+  # a.deposit(399)
+  # a.withdraw(10)
+  # a.deposit_history()
+  # a.withdraw_history()  #정답
+  ```
