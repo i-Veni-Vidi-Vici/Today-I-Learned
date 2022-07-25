@@ -9,9 +9,10 @@
 - Stream을 전달받아  Stream으로 반환하므로 연속으로 사용가능
 - 스트림을 필요한 형태로 가공
 ### 중개 연산 메서드
-**sorted()**    
+**sorted()**
+
 - 정렬
-  **sorted(Comparator.reverseOrder())**    
+**sorted(Comparator.reverseOrder())**    
 - 역정렬
   **filter()**
 - 스트림에서 주어진 조건에 맞는 요소들로 구성된 새로운 스트림 반환
