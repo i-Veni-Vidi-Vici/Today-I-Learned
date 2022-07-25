@@ -10,8 +10,8 @@
 - 스트림을 필요한 형태로 가공
 ### 중개 연산 메서드
 **sorted()**
-
 - 정렬
+
 **sorted(Comparator.reverseOrder())**    
 - 역정렬
   **filter()**
