@@ -12,6 +12,7 @@ Run tests using: Gradle- IntelliJ IDEA
 
 - spring-boot-starter-tomcat 톰캣(웹서버)
 - spring-webmvc 스프링 웹 MVC
+
 **spring-boot-starter-thymeleaf 타임리프 템플릿 엔진(View)**
 
 **spring-boot-starter(공통): 스프링 부트 + 스프링 코어 + 로깅**
