@@ -64,16 +64,16 @@ Run tests using: Gradle- IntelliJ IDEA
 ### thymeleaf 템플릿 엔진 사용
 
 **resources/templates/hello.html**
-- ```
+- ```html
   <!DOCTYPE HTML>
   <html xmlns:th="http://www.thymeleaf.org">
-  <head>
-   <title>Hello</title>
-   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-  </head>
-  <body>
-  <p th:text="'안녕하세요. ' + ${data}" >안녕하세요. 손님</p>
-  </body>
+	  <head>
+		   <title>Hello</title>
+		   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	  </head>
+	  <body>
+		  <p th:text="'안녕하세요. ' + ${data}" >안녕하세요. 손님</p>
+	  </body>
   </html>
   ```
 
@@ -109,7 +109,7 @@ Run tests using: Gradle- IntelliJ IDEA
 - 화면에 필요한 것들을 담아 View에 넘겨줌
 
 **Controller**
-- ```spring
+- ```java
   @Controller
   public class HelloController {
 	   @GetMapping("hello-mvc")
