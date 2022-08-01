@@ -49,14 +49,14 @@ Run tests using: Gradle- IntelliJ IDEA
 
 
 **controller/HelloController**
-- ```
+- ```java
   @Controller
   public class HelloController {
-   @GetMapping("hello")
-   public String hello(Model model) {
-   model.addAttribute("data", "hello!!");
-   return "hello";
-   }
+	   @GetMapping("hello")
+	   public String hello(Model model) {
+		   model.addAttribute("data", "hello!!");
+		   return "hello";
+	   }
   }
   ```
 - 요청 경로를 보고 이를 애플리케이션에 정의된 매핑(예: @GetMapping컨트롤러 메서드의 주석)과 일치시켜 들어오는 HTTP 요청을 핸들러에 매핑
@@ -94,35 +94,39 @@ Run tests using: Gradle- IntelliJ IDEA
 **MVC와 템플릿 엔진**
 
 - MVC: Model, View, Controller
+
 **View**
 
 - 화면을 그리는 데 집중
+
+
 **Controller**
 
 - 비즈니스 로직이나 내부적인 처리하는데 집중
+
 **Model**
 
 - 화면에 필요한 것들을 담아 View에 넘겨줌
 
 **Controller**
-- ```
+- ```spring
   @Controller
   public class HelloController {
-   @GetMapping("hello-mvc")
-   public String helloMvc(@RequestParam("name") String name, Model model) {
-   model.addAttribute("name", name);
-   return "hello-template";
-   }
+	   @GetMapping("hello-mvc")
+	   public String helloMvc(@RequestParam("name") String name, Model model) {
+		   model.addAttribute("name", name);
+		   return "hello-template";
+	   }
   }
   ```
 - hello-mvc에 요청된 파라미터 name 값을 String name으로 받아 만들어진 모델을 view(viewResolver)로 전달  hello-mvc?name=요청 값
 
 **View**
 resources/template/hello-template.html
-- ```
+- ```html
   <html xmlns:th="http://www.thymeleaf.org">
   <body>
-  <p th:text="'hello ' + ${name}">hello! empty</p>
+	  <p th:text="'hello ' + ${name}">hello! empty</p>
   </body>
   ```
 - Thymeleaf 템플릿 엔진 처리하여 html로 변환 후 웹브라우저에 전달
