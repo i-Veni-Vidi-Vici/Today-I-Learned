@@ -3,9 +3,9 @@
 ## IntelliJ Gradle 대신에 자바 직접 실행
 - 최신 IntelliJ 버전은 Gradle을 통해서 실행 하는 것이 기본 설정
 - 자바로 변경하여 실행하면 실행속도가 더 빠름
-Preferences- Build, Execution, Deployment -Build Tools Gradle
-Build and run using: Gradle- IntelliJ IDEA
-Run tests using: Gradle- IntelliJ IDEA
+- Preferences- Build, Execution, Deployment -Build Tools Gradle
+- Build and run using: Gradle- IntelliJ IDEA
+- Run tests using: Gradle- IntelliJ IDEA
 
 ### 스프링 부트 라이브러리 
 **spring-boot-starter-web**
