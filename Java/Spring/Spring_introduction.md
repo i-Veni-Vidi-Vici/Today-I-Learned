@@ -122,6 +122,7 @@
 - hello-mvc에 요청된 파라미터 name 값을 String name으로 받아 만들어진 모델을 view(viewResolver)로 전달  hello-mvc?name=요청 값
 
 **View**
+
 resources/template/hello-template.html
 - ```html
   <html xmlns:th="http://www.thymeleaf.org">
