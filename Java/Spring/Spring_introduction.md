@@ -34,16 +34,16 @@ Run tests using: Gradle- IntelliJ IDEA
 
 ##### Welcome Page 만들기
 - resources/static/index.html이 초기 페이지로 나타남
-- ```
+- ```html
   <html>
-  <head>
-   <title>Hello</title>
-   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-  </head>
-  <body>
-  Hello
-  <a href="/hello">hello</a>
-  </body>
+	  <head>
+		   <title>Hello</title>
+		   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	  </head>
+	  <body>
+		  Hello
+		  <a href="/hello">hello</a>
+	  </body>
   </html>
   ```
 
@@ -62,6 +62,7 @@ Run tests using: Gradle- IntelliJ IDEA
 - 요청 경로를 보고 이를 애플리케이션에 정의된 매핑(예: @GetMapping컨트롤러 메서드의 주석)과 일치시켜 들어오는 HTTP 요청을 핸들러에 매핑
 
 ### thymeleaf 템플릿 엔진 사용
+
 **resources/templates/hello.html**
 - ```
   <!DOCTYPE HTML>
