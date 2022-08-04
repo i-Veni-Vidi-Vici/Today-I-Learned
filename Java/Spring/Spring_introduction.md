@@ -134,3 +134,49 @@ resources/template/hello-template.html
 - hello! empty: 서버 없이 html을 만들어서 작업할 때 볼 수 있게 작성하는것
 - 실제 서버가 작동하면  hello! empty값이 'hello ' + ${name}값으로 바뀜
 
+**API**
+
+###### @ResponseBody 문자 반환
+- ```java
+	@Controller
+	public class HelloController {
+		 @GetMapping("hello-string")
+		 @ResponseBody
+		 public String helloString(@RequestParam("name") String name) {
+			 return "hello " + name;
+		 }
+	}
+	```
+- @RespondseBody를 사용하면 viewResolver를 사용하지 않고 HTTP의 BODY에 문자 내용을 직접 반환(HTML BODY TAG가 아님)
+
+###### @ResponseBody 객체 반환
+
+- ```java
+	@Controller
+	public class HelloController {
+		 @GetMapping("hello-api")
+		 @ResponseBody
+		 public Hello helloApi(@RequestParam("name") String name) {
+			 Hello hello = new Hello();
+			 hello.setName(name);
+			 return hello;
+	 	}
+		 static class Hello {
+			 private String name;
+			 public String getName() {
+			 return name;
+		 	}
+			 public void setName(String name) {
+				 this.name = name;
+			 }
+		 }
+	}
+	```
+- @ResponseBody 를 사용하고, 객체를 반환하면 객체가 JSON으로 변환됨
+
+##### @ResponseBody 사용원리
+- @ResponseBody를 사용하면 HTTP의 BODY에 문자 내용을 직접 반환
+- 웹브라우저 요청이 들어오면 톰캣서버가 스프링 컨테이너에 넘기고 컨트롤러에 있고 @ResponseBody가 있을때 viewResolver 대신에 HttpMessageConverter 가 동작
+- 기본 문자처리: StringHttpMessageConverter 가 동작
+- 기본 객체처리: MappingJackson2HttpMessageConverter 가 동작하여 json으로 변환 후 웹 브라우저에 전달됨
+- byte 처리 등등 기타 여러 HttpMessageConverter가 기본으로 등록되어 있음
