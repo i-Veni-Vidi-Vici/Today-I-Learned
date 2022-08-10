@@ -180,3 +180,60 @@ resources/template/hello-template.html
 - 기본 문자처리: StringHttpMessageConverter 가 동작
 - 기본 객체처리: MappingJackson2HttpMessageConverter 가 동작하여 json으로 변환 후 웹 브라우저에 전달됨
 - byte 처리 등등 기타 여러 HttpMessageConverter가 기본으로 등록되어 있음
+
+#### 회원 관리 예제 - 백엔드 개발
+- 비즈니스 요구상항 정리
+- 회원 도메인과 리포지토리 만들기
+- 회원 리포지토리 테스트 케이스 작성
+- 회원 서비스 개발
+- 회원 서비스 테스트
+
+##### 비즈니스 요구사항 정리
+- 데이터: 회원ID, 이름
+- 기능: 회원 등록, 조회
+- 데이터 저장소가 선정되지 않음(가상의 시나리오)
+
+##### 일반적인 웹 애플리케이션 계층 구조
+- 컨트롤러-> 서비스->리포지토리->db
+- 컨트롤러-> 도메인
+- 서비스 -> 도메인
+- 리포지토리 -> 도메인
+
+##### 컨트롤러
+- 웹 MVC 컨트롤러 역할
+##### 서비스
+- 핵심 비즈니스 로직 구현
+##### 리포지토리 
+- 데이터베이스에 접근, 도메인 객체를 DB에 저장하고 관리
+##### 도메인
+- 비즈니스 도메인 객체 ex) 회원, 주문, 쿠폰 등등 주로 데이터베이스에 저장하고 관리됨
+
+#### 클래스 의존관계
+MemberService-> (interface)MemberRepository <- MemoryMemberRepository
+- 아직 데이터 저장소가 선정되지 않아서, 우선 인터페이스로 구현클래스를 변경할 수 있도록 설계
+- 데이터 저장소는 RDB, NoSQL 등등 다양한 저장소를 고민중인 상황으로 가정
+- 개발을 진행하기 위해서 초기 개발 단계에서는 구현체로 가벼운 메모리 기반의 데이터 저장소 사용
+
+#### 회원 도메인과 리포지토리 만들기
+- 회원 객체
+- domain/Member
+- ```java
+	package hello.hellospring.domain;
+	public class Member {
+
+		 private Long id;
+		 private String name;
+		 public Long getId() {
+			return id;
+		 }
+		 public void setId(Long id) {
+		 	this.id = id;
+		 }
+		 public String getName() {
+		 	return name;
+		 }
+		 public void setName(String name) {
+		 	this.name = name;
+		 }
+	}
+	```
