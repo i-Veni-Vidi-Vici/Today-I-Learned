@@ -289,3 +289,57 @@ MemberService-> (interface)MemberRepository <- MemoryMemberRepository
 		 }
 	}
 	```
+#### 회원 리포지토리 테스트 케이스 작성
+- 이전에는 개발한 기능을 실행해서 테스트할 때, 자바의 main 메서드를 통해 실행하거나, 웹 애플리케이션의 컨트롤러를 통해서 해당 기능을 실행
+- 이러한 방법은 준비하고 실행하는데 오래 걸리고, 반복 실행하기 어렵고 여러 테스트를 한번에 실행하기 어려움
+- 자바는 **JUnit**이라는 프레임워크로 테스트를 실행해서 이러한 문제를 해결
+#### 회원 리포지토리 메모리 구현체 테스트
+- src/test/java하위 폴더에 생성
+- ```java
+	class MemoryMemberRepositoryTest {
+		 MemoryMemberRepository repository = new MemoryMemberRepository();
+		 @AfterEach
+		 public void afterEach() {
+		 	repository.clearStore();
+		 }
+		 @Test
+		 public void save() {
+			 //given
+			 Member member = new Member();
+			 member.setName("spring");
+			 //when
+			 repository.save(member);
+			 //then
+			 Member result = repository.findById(member.getId()).get();
+			 assertThat(result).isEqualTo(member);
+		 }
+		 @Test
+		 public void findByName() {
+			 //given
+			 Member member1 = new Member();
+			 member1.setName("spring1");
+			 repository.save(member1);
+			 Member member2 = new Member();
+			 member2.setName("spring2");
+			 repository.save(member2);
+			 //when
+			 Member result = repository.findByName("spring1").get();
+			 //then
+			 assertThat(result).isEqualTo(member1);
+		 }
+		 @Test
+		 public void findAll() {
+			 //given
+			 Member member1 = new Member();
+			 member1.setName("spring1");
+			 repository.save(member1);
+			 Member member2 = new Member();
+			 member2.setName("spring2");
+			 repository.save(member2);
+			 //when
+			 List<Member> result = repository.findAll();
+			 //then
+			 assertThat(result.size()).isEqualTo(2);
+		 }
+	}
+	```
