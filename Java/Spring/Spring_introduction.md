@@ -343,3 +343,41 @@ MemberService-> (interface)MemberRepository <- MemoryMemberRepository
 		 }
 	}
 	```
+#### @AfterEach
+- 한번에 여러 테스트를 실행하면 메모리 DB에 직접 테스트의 결과가 남을 수 있음
+- 다음 이전 테스트 때문에 다음 테스트가 실패할 가능성이 있음
+- **@AfterEach**를 활용하여 테스트 종료 시 기능을 설정하여 실행함
+- 여기서는 메모리 DB에 저장된 데이터를 삭제
+- 테스트는 각각 독립적으로 실행되어야함
+- **테스트 순서에 의존관계가 있는 것은 좋은 테스트가 아님**
+
+#### 회원 서비스 개발
+- ```java
+	public class MemberService {
+		 private final MemberRepository memberRepository = new
+		 MemoryMemberRepository();
+		 /**
+		 * 회원가입
+		 */
+		 public Long join(Member member) {
+			 validateDuplicateMember(member); //중복 회원 검증
+			 memberRepository.save(member);
+			 return member.getId();
+		 }
+		 private void validateDuplicateMember(Member member) {
+			 memberRepository.findByName(member.getName())
+			 .ifPresent(m -> {
+			 throw new IllegalStateException("이미 존재하는 회원입니다.");
+			 });
+		 }
+		 /**
+		 * 전체 회원 조회
+		 */
+		 public List<Member> findMembers() {
+			 return memberRepository.findAll();
+			 }
+			 public Optional<Member> findOne(Long memberId) {
+			 return memberRepository.findById(memberId);
+		 }
+	}
+	```
