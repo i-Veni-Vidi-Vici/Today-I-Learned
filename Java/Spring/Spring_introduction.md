@@ -381,3 +381,59 @@ MemberService-> (interface)MemberRepository <- MemoryMemberRepository
 		 }
 	}
 	```
+#### 회원 서비스 테스트
+- 기존에는 회원 서비스가 메모리 회원 리포지토리를 직접 생성
+- 회원 리포지토리의 코드가 회원 서비스 코드를 DI 가능하게 변경
+- ```java
+	public class MemberService {
+		 private final MemberRepository memberRepository;
+		 public MemberService(MemberRepository memberRepository) {
+			 this.memberRepository = memberRepository;
+		 }
+		 ...
+	}
+	```
+
+#### 회원 서비스 테스트
+- ```java
+	class MemberServiceTest {
+		 MemberService memberService;
+		 MemoryMemberRepository memberRepository;
+		 @BeforeEach
+		 public void beforeEach() {
+			 memberRepository = new MemoryMemberRepository();
+			 memberService = new MemberService(memberRepository);
+		 }
+		 @AfterEach
+		 public void afterEach() {
+			 memberRepository.clearStore();
+		 }
+		 @Test
+		 public void 회원가입() throws Exception {
+			 //Given
+			 Member member = new Member();
+			 member.setName("hello");
+			 //When
+			 Long saveId = memberService.join(member);
+			 //Then
+			 Member findMember = memberRepository.findById(saveId).get();
+			 assertEquals(member.getName(), findMember.getName());
+		 }
+		 @Test
+		 public void 중복_회원_예외() throws Exception {
+			 //Given
+			 Member member1 = new Member();
+			 member1.setName("spring");
+			 Member member2 = new Member();
+			 member2.setName("spring");
+			 //When
+			 memberService.join(member1);
+			 IllegalStateException e = assertThrows(IllegalStateException.class,
+			 () -> memberService.join(member2));//예외가 발생해야 한다.
+			 assertThat(e.getMessage()).isEqualTo("이미 존재하는 회원입니다.");
+		 }
+	}
+##### assertThrows(예외 클래스, 예외 발생문)
+- 지정된 예외 클래스가 예외 발생문에서 발생하면 성공하며 예외를 반환
+##### @BefoeEach 
+- 각 테스트 실행 전에 호출, 테스트가 서로 영향이 없도록 항상 새로운 객체를 생성하고, 의존관계도 새로 맺어줌
