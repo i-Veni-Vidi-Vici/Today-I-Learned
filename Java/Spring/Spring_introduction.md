@@ -437,3 +437,13 @@ MemberService-> (interface)MemberRepository <- MemoryMemberRepository
 - 지정된 예외 클래스가 예외 발생문에서 발생하면 성공하며 예외를 반환
 ##### @BefoeEach 
 - 각 테스트 실행 전에 호출, 테스트가 서로 영향이 없도록 항상 새로운 객체를 생성하고, 의존관계도 새로 맺어줌
+#### Test
+- test 메서드 이름은 한글로 사용하는것이 더 편리
+-3단계 원칙으로 테스트 코드 작성해보기
+-```
+       //given
+        
+       //when
+        
+       //then
+       ```
