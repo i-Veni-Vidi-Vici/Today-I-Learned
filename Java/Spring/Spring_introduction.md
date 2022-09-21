@@ -440,7 +440,7 @@ MemberService-> (interface)MemberRepository <- MemoryMemberRepository
 #### Test
 - test 메서드 이름은 한글로 사용하는것이 더 편리
 -3단계 원칙으로 테스트 코드 작성해보기
--```
+- ```
        //given
         
        //when
