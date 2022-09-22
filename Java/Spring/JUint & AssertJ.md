@@ -21,23 +21,23 @@
 - 객체A가 Null인지 확인
 
 ### JUnit의 어노테이션
-**@Test**
+#### @Test
 - 메소드 위에 해당 어노테이션을 선언해, 테스트 메소드임을 지정
-**@Test(timeout= 1000ms)**
+#### @Test(timeout= 1000ms)
 - 테스트 메소드 수행 시간을 제한할 수 있다.
 - 테스트 메소드가 리턴값을 반환하는 데에 걸리는 시간이 지정된 밀리초를 넘기면 실패
-**@Test(expected= 예외)**
+#### @Test(expected= 예외)
 - 지정된 예외가 발생해야 테스트가 성공
-**@Ignore**
+#### @Ignore**
 - 해당 테스트 메서드를 실행하지 않음
-**@BeforeEach == @Before**
+#### @BeforeEach == @Before
 - 각 테스트 메서드가 실행되기전 매번 실행되는 메서드 지정
 - 테스트 전 리셋 또는 공통부분으로 사용
-**@AfterEach == @After**
+#### @AfterEach == @After**
 - 각 테스트 메서드 실행이 끝난 후 실행되는 메서드 지정
-**@BeforeAll**
+#### @BeforeAll
 - 테스트 클래스가 실행될 때 한 번만 수행되는 테스트 메서드 지정
-**@AfterAll**
+#### @AfterAll
 - 테스트 클래스 실행이 끝난 후 한 번만 수행되는 테스트 메서드 지정
 
 # AssertJ
