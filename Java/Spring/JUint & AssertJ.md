@@ -50,6 +50,34 @@
 ## AssertJ의 assert 메서드
 - AssertJ에서 모든 테스트 코드는 **assertThat()** 으로 시작
 - ```assertThat(테스트).메서드1().메서드2()``` 메서드 체인ㅇ
+#### isEqualTo(Object o) 
+- 실제 값이 주어진 값과 같은지 확인
+#### isNotEqualTo(Object o) 
+- 실제 값이 주어진 값과 같지 않은지 확인
+
+#### isInstanceOf(Class<?> type) , isInstanceOfAny(Class<?> ... types)
+- 실제 값이 주어진 유형의 인스턴스인지 확인
+#### asList()
+- 실제 값이 List의 인스턴스인지 확인하고 ```list Assertion```을 반환
+#### asString() 
+- ```toString()```으로 실제 값에 대한 문자열을 반환
+#### isSameAs(Object o) 
+- ```==비교```를 사용해 실제 값이 주어진 값과 동일한지 확인
+#### isZero() 
+- 값이 0인지 확인
+#### isBetween(start, end)
+- 값이 ```start```와 ```end``` 값 사이에 있는지 확인 
+#### as("설명") 
+- ```"설명"```이 테스트 결과에 출력
+- as()는 assertion 메소드들을 호출하기 전에 사용
+
+#### assertThrows(예외 클래스, 예외 발생문)
+- 지정된 예외 클래스가 예외 발생문에서 발생하면 성공하며 예외를 반환
+- ```
+  // 2번째 람다식으로 인해 첫번째 오류가 발생하면 test성공
+  assertThrows(IllegalStateException.class, ()-> memberService.join(member2));
+  ```
+
 
 ### 예제 - 문자열 테스트
 - ```java
