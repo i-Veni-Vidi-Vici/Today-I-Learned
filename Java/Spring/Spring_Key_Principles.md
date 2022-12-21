@@ -239,7 +239,7 @@ Run tests using: IntelliJ IDEA
 - 기존에는 개발자가 직접 객체를 생성하고 DI를 했지만, 스프링 컨테이너를 통해서 사용할 수 있음
 
 ### @Configuration
-- 스프링 컨테이너는 @Configuration붙어있는 것을 설정정보로 사용함
+- 스프링 컨테이너는 ```@Configuration```붙어있는 것을 설정정보로 사용함
 - ```java
 	@Configuration AppConfig(){}
 	```
@@ -247,7 +247,7 @@ Run tests using: IntelliJ IDEA
 - 설정정보의 메소드에 각각 적어줌
 - @Bean이 적힌 메서드를 모두 호출해서 반환된 객체를 스프링 컨테이너에 등록함
 - 이렇게 스프링 컨테이너에 등록된 객체를 스프링 빈이라 함
-- 스프링 빈은 @Bean이 붙은 메서드의 명을 스프링 빈의 이름으로 사용
+- 스프링 빈은 ```@Bean```이 붙은 메서드의 명을 스프링 빈의 이름으로 사용
 - 이름 변경 가능 ```@Bean(name = "new")```
 - ```java
 	@Bean
@@ -259,7 +259,7 @@ Run tests using: IntelliJ IDEA
 - 스프링은 항상 ```ApplicationContext```으로 시작
 - ```@Bean``` 메서드를 다 관리해줌
 - 이전에는 개발자가 필요한 객체를 직접 조회했지만, 이제는 스프링 컨테이너를 통해 필요한 스프링 빈(객체)를 찾아야 함
-- 스프링 빈은 applicationContext.getBean() 메서드를 사용해 찾을 수 있음
+- 스프링 빈은 ```applicationContext.getBean()``` 메서드를 사용해 찾을 수 있음
 - 기존에 개발자가 직접 자바코드로 모든 것을 했지만, 스프링 컨테이너를 이용하면 객체를 스프링 빈으로 등록하고, 스프링 컨테이너에서 스프링 빈을 찾아서 사용하도록 변경됨
 - ```java
  	ApplicationContext applicationContext = new AnnotationConfigApplicationContext(AppConfig.class);
