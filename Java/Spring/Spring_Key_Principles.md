@@ -373,3 +373,149 @@ Run tests using: IntelliJ IDEA
 - `@Bean`만 사용해도 스프링 빈으로 등록되지만, 싱글톤을 보장하지 않음
 	- 의존관계 주입이 필요하여 메서드를 직접 호출할 때 싱글톤을 보장하지 않ㅇ므
 - 스프링 설정정보는 항상 `@Configuration`을 사용하는 것을 권장
+
+# 컴포넌트 스캔
+
+### 컴포넌트 스캔 & 의존관계 자동 주입
+- 스프링 빈을 등록할때 자바 코드 `@Bean`이나 `XML`의 `<bean>`등을 통해서 설정 정보에 직접 등록함
+- 그러나 이렇게 등록해야 할 스프링 빈이 수십, 수백개가 되면 일일이 등록하기도 귀찮고, 설정 정보도 커지고 누락하는 문제도 발생
+- 스프링은 설정 정보가 없어도 자동으로 스프링 빈을 등록하는 컴포넌트 스캔이라는 기능을 제공
+- 의존관계도 자동으로 주입하는 `@Autowired`라는 기능도 함께 제공
+
+**AutoAppConfig.java**
+- ```java
+	@Configuration
+	@ComponentScan(
+	 	excludeFilters = @Filter(type = FilterType.ANNOTATION, classes =
+		Configuration.class))
+	public class AutoAppConfig {
+	}
+	```
+
+- 컴포넌트 스캔을 사용하기 위해 `@ComponenetScan`을 설정정보에 붙여주어야 함
+- 기존 설정정보와 다르게 `@Bean`으로 등록한 클래스x
+- 컴포넌트 스캔을 사용하면 `@Configuration`이 붙은 설정 정보도 자동으로 등록됨
+	- `@Configuration` 소스코드에 `@Component` 애노테이션이 존재함
+- 컴포넌트 스캔은 `@Component` 애노테이션이 붙은 클래스를 스캔해서 스프링 빈으로 등록함
+
+##### excludeFilters
+- 컴포넌트 스캔 대상에서 제외 가능
+
+### @ComponentScan
+- `@Component`가 붙은 모든 클래스를 스프링 빈으로 등록
+- 스프링 빈의 기본 이름은 클래스명을 사용하고 맨 앞글자만 소문자를 사용
+- 빈 이름 디폴트: `MemberService` -> `memberService`
+- 빈 이름 직접 지정: `@Component("memberService2")`
+
+### `@Autowired` 의존관계 자동 주입
+- 생성자에 `@Autowired`를 지정하면, 스프링 컨테이너가 자동으로 해당 스프링 빈을 찾아서 주입
+- 디폴트 조회 방법은 타입이 같은 빈을 찾아서 주입
+	- `getBean(MemberRepository.class)`기능과 동일
+
+### 탐색 위치와 기본 스캔 대상
+
+### 탐색할 패키지의 시작 위치 지정
+- 모든 자바클래스를 모두 컴포넌트 스캔하면 시간이 오래 걸림
+- 꼭 필요한 위치만 탐색하도록 시작 위치를 지정
+- 기본값(지정 안할 시)은 `@CompnenetScan`이 붙은 설정 정보클래스의 패키지가 시작위치가 됨
+
+
+##### 1. basePackages
+- 탐색할 패키지의 시작 위치를 지정
+- 해당 패키지를 포함하여 하위 해키지를 모두 탐색
+###### 단일 시작 위치 지정
+- ```java
+	@ComponentScan(
+	 	basePackages = "hello.core",
+	}
+	```
+
+###### 다중 시작 위치 지정
+- ```java
+	@ComponentScan(
+	 	basePackages = {"hello.core", "hello.service"}
+	}
+	```
+
+##### 2. basePackageClasses
+- 지정한 클래스의 패키지를 탐색 시작 위치로 지정
+- ```java
+	@ComponentScan(
+	 	basePackageClasses = AutoAppConfig.class
+	}
+	```
+##### 권장 방법
+- 패키지 위치를 지정하지 않고, 설정 정보 클래스의 위치르르 프로젝트 최상단에 두는 것임
+- 최근 스프링 부트도 이 방법을 기본으로 제공
+ex)
+- ```java
+	com.hello
+	com.hello.serivce
+	```
+
+- 이와 같이 프로젝트 구성시, `com.hello`에 메인설정 정보를 두고, 따로 위치 지정을 설정하지 않음
+- `com.hello`를 포함한 하위는 모두 자동으로 컴포넌트 스캔 대상이 됨
+- 프로젝트 메인설정정보는 프로젝트를 대표하는 정보이기 때문에 시작 루트 위치에 두는 것을 선호
+- 스프링 부트 사용시 스프링 부트 대표 시작 정보인 `@SpringBootApplication`를 이 프로젝트 시작 루트 위치에 두는 것이 관례임(이 설정정보에 `@ComponentScan`이 포함)
+
+### 컴포넌트 스캔 기본 대상
+- 컴포넌트 스캔은 `@Component`뿐만 아니라 다음내용도 추가로 대상에 포함
+- 해당 클래스 소스코드에 `@Component`를 포함함
+- 애노테이션에는 상속관계가 없지만, 애노테이션이 특정애노테이션을 들고 있는 것을 인식하게 하는 것은 스프링이 지원하는 기능임
+- `useDefaultFilters`옵션은 기본으로 켜져 있고, 이 옵션을 끄면 기본 스캔 대상들이 제외됨
+
+##### @Component 
+- 컴포넌트 스캔에서 사용
+##### @Controller
+- 스프링 MVC 컨트롤러로 인식
+##### @Service
+- 스프링 비즈니스 로직에서 사용, 특별한 처리기능은 없고, 개발자들이 핵심 비즈니스 로직으로 인식하게끔 문구역할
+##### @Repository
+- 스프링 데이터 접근 계층으로 인식하고, 데이터 계층의 예외를 스프링 예외로 변환해줌
+##### @Configuration
+- 스프링 설정정보로 인식하고, 스프링 빈이 싱글톤을 유지하도록 추가처리를 함
+
+### 필터
+- `@Component`면 충분하기 때문에, `includeFilters`를 사용할 일은 거의 없음
+- `excludeFilters`는 간혹 사용할때는 있음
+- 특히 최근 스프링 부트는 컴포넌트 스캔을 기본으로 제공하는데, 개인적으로 옵션을 변경하면서 사용하기보다는 스프링의 기본 설정에 최대한 맞추어 사용하는것을 권장하고, 선호하는 편임
+##### includeFilters
+- 컴포넌트 스캔 대상을 추가로 지정
+##### excludeFilters
+- 컴포넌트 스캔에서 제외할 대상을 지정
+
+#####  FilterType 옵션 5가지
+###### ANNOTATION
+- 기본값, 애노테이션을 인식해서 동작
+
+###### ASSIGNABLE_TYPE
+- 지정한 타입과 자식 타입을 인식해서 동작
+###### ASPECTJ
+- `AspectJ` 패턴 사용
+###### REGEX
+- 정규 표현식
+###### CUSTOM
+- `TypeFilter` 이라는 인터페이스를 구현해서 처리
+
+### 중복 등록과 충돌
+- 컴포넌트 스캔에서 같은 빈 이름 등록시 발생 상황
+##### 1. 자동 빈 등록 vs 자동 빈 등록
+- 컴포넌트 스캔에 의해 자동으로 스프링 빈이 등록되는데, 그 이름이 같은 경우 스프링은 오류를 발생시킴
+- `ConflictingBeanDefinitionException`예외 발생
+##### 2. 수동 빈 등록 vs 자동 빈 등록
+- 수동 빈 등록이 우선권을 가짐( 수동 빈이 자동 빈을 오버라이딩을 함)
+- ```java
+	Overriding bean definition for bean 'memoryMemberRepository' with a different
+	definition: replacing
+	```
+- 개발자가 의도적으로 이런 결과를 기대했다면, 자동보다 수동이 우선권을 가지는 것이 좋지만, 의도적인 상황보다 여러 설정들이 꼬여서 이런 결과가 만들어지는 경우가 대부분임
+-> 그렇게되면, 잡기 매우 어려운 애매한 버그가 발생함
+- 최근 스프링 부트에서는 수동 빈 등록과 자동 빈 등록이 출돌나면 오류가 발생하도록 기본 값을 바꿈
+
+###### 수동 빈 등록, 자동 빈 등록 오류시 스프링 부트 에러
+- ```java
+	Consider renaming one of the beans or enabling overriding by setting
+	spring.main.allow-bean-definition-overriding=true
+	```
+
+
