@@ -973,7 +973,111 @@ ex)
 - 스프링 부트의 경우 `DataSource`같은 데이터베이스 연결에 사용하는 기술 지원 로직까지 내부에서 자동으로 등록하는데, 이런 부분은 메뉴얼을 잘 참고해서 스프링 부트가 의도한 대로 편리하게 사용하면 됨
 - 반면에 스프링 부트가 아니라 내가 직접 기술 지원 객체를 스프링 빈으로 등록한다면 수동으로 등록해서 명확하게 드러내는 것이 좋음
 
+## 빈 생명주기 콜백
+- DB 커넥션 풀이나, 네트워크 소켓처럼 애플리케이션 시작 시점에 필요한 연결을 미리 해두고, 애플리케이션 종료 시점에 연결을 모두 종료하는 작업을 진행하려면, 객체의 초기화와 종료 작업이 필요
 
+
+### 스프링 빈 라이프 사이클
+- 객체 생성 -> 의존관계 주입
+- 스프링 빈은 객체를 생성하고, 의존관계 주입이 다 끝난 후에 필요한 데이터를 사용할 수 있는 준비가 완료됨
+- 초기화 작업은 의존관계 주입이 모두 완료된 후에 호출해야함
+- 스프링은 의존관계 주입이 완료되면, 스프링 빈에게 콜백 메서드를 통해서 초기화 시점을 알려주는 다양한 기능을 제공
+- 스프링은 스프링 컨테이너가 종료되기 직전에 소멸 콜백을 하기때문에, 안전하게 종료작업을 진행할 수 있음
+
+### 스프링 빈의 이벤트 라이프 사이클
+- 스프링 컨테이너 생성 -> 스프링 빈 생성 -> 의존관계 주입 -> 초기화 콜백 -> 사용 -> 소멸전 콜백 -> 스프링 종료
+
+##### 초기화 콜백
+- 빈이 생성되고, 빈의 의존관계 주입이 완료된 후 호출
+##### 소멸전 콜백
+- 빈이 소멸되기 직전에 호출
+
+### 객체의 생성과 초기화 분리권장
+- 생성자는 필수 정보(파리미터)를 받고, 메모리를 할당하여 객체를 생성하는 책임을 가짐
+- 초기화는 이렇게 생성된 값들을 활용해서 외부 커넥션을 연결하는 무거운 동작을 수행
+- 생성자 안에서 무거운 초기화 작업을 하는 것보다, 객체를 생성하는 부분과 초기화하는 부분을 명확히 나누는 것이 유지보수 관점에서 좋음
+- 초기화 작업이 내부 값들만 약간 변경하는 정도로 단순한 경우에는 생성자에서 한번에 처리하는것이 좋음
+- 싱글통 빈들은 스프링 컨테이너가 종료될때 싱글톤 빈들도 함께 종료되기 때문에 스프링 컨테이너가 종료되기 직전에 소멸전 콜백이 발생
+- 싱글톤처럼 컨테이너의 시작과 종료까지 생존하는 빈도 있지만, 생명주기가 짧은 빈들도 존재, 이러한 빈들은 컨테이너와 상관없이 해당 빈이 종료되기 직전에 소멸전 콜백이 일어남
+
+### 스프링 빈 생명주기 콜백 방법
+
+#### 인터페이스 InitializingBean, DisposableBean
+- InitializingBean 은 afterPropertiesSet() 메서드로 초기화를 지원
+- DisposableBean 은 destroy() 메서드로 소멸을 지원
+- ```java
+	public class NetworkClient implements InitializingBean, DisposableBean {
+		//...
+		@Override
+		 public void afterPropertiesSet() throws Exception {
+			 connect();
+			 call("초기화 연결 메시지");
+		 }
+		 @Override
+		 public void destroy() throws Exception {
+			 disConnect();
+		 }
+	}
+	``
+##### 초기화, 소멸 인터페이스 단점
+- 이 인터페이스는 스프링 전용 인터페이스이므로, 해당 코드가 스프링 전용 인터페이스에 의존함
+- 초기화, 소멸 메서드의 이름을 변경할 수 없음
+- 내가 코드를 고칠 수 없는 외부 라이브러리에 적용할 수 없음
+- 인터페이스를 사용하는 초기화, 종료 방법은 스프링 처음에 나온 방법이고, 지금은 거의 사용안함
+
+#### 빈 등록 초기화, 소멸 메서드 지정
+- 설정 정보에 `@Bean(initMethod = "init", destroyMethod = "close")`로 초기화, 소멸 메서드를지정
+- 메서드 이름을 지정할 수 있음
+- 스프링 빈이 스프링 코드에 의존하지 않음
+- 코드가 아니라 설정 정보를 사용하기 때문에, 코드를 고칠 수 없는 외부 라이브러리에도 초기화,종료메서드를 적용할 수 있음
+- `@Bean`의 `destroyMethod`는 기본값이 `(inferred)` (추론)으로 등록되어 있는데, 이 추론 기능은 `close` , `shutdown` 라는 이름의 메서드를 자동으로 호출함
+- 라이브러리는 대부분 `close`, `shutdown`이라는 이름의 종료 메서드를 사용
+- 따라서, 직접 스프링 빈으로 등록하면 종료 메서드는 따로 적어주지 않아도 잘 동작
+- 추론 기능을 사용하기 싫으면 `destroyMethod=""`으로 빈 공백을 지정
+
+- ```java
+	public class NetworkClient {
+		public void init() {
+			 System.out.println("NetworkClient.init");
+			 connect();
+			 call("초기화 연결 메시지");
+		 }
+		 public void close() {
+			 System.out.println("NetworkClient.close");
+			 disConnect();
+		 }
+	}
+	```
+- ```java
+	@Configuration
+	static class LifeCycleConfig {
+		 @Bean(initMethod = "init", destroyMethod = "close")
+		 public NetworkClient networkClient() {
+		//...
+		}
+	}
+
+#### 애노테이션 `@PostConstruct`, `@PreDestroy`
+- 최신 스프링에서 가장 권장하는 방법
+- 애노테이션만 붙이면 되므로 매우 편리
+- 패키지는 `javax.annotation.PostConstruct`로 스프링에 종속적인 기술이 아니라 JSR-250라는 자바 표준이므로 스프링이 아닌 다른 컨테이너에서도 동작함
+- 외부라이브러리에는 적용 못함
+- 코드를 고칠 수 없는 외부 라이브러리를 초기화, 종료해야 하면 `@Bean`의 `initMethod`, `destroyMethod`를 사용
+- ```java
+	public class NetworkClient {
+		@PostConstruct
+		 public void init() {
+			 System.out.println("NetworkClient.init");
+			 connect();
+			 call("초기화 연결 메시지");
+		 }
+		 @PreDestroy
+		 public void close() {
+			 System.out.println("NetworkClient.close");
+			 disConnect();
+		 }
+	}
+	```
 
 
 
