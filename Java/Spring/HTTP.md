@@ -85,6 +85,106 @@ TCP/IP 패킷
 2. DNS 서버-> 클라이언트: 100.100.100.1 응답
 3. 클라이언트-> 서버 :100.100.100.1 접속
 
+## URI와 웹브라우저 요청 흐름
+
+### URI(Uniform Resource Identifier)
+- 로케이터(locator), 이름(name) 또는 둘다 추가로 분류될 수 있음
+- URI= URL,URN
+#### Uniform
+- 리소스를 식별하는 통일된 방식
+#### Resource
+- 자원, URI로 식별할 수 있는 모든 것(제한 없음)
+- HTML 문서, 구분할 수 있는 모든 것 등
+#### Identifier
+- 다른 항목과 구분하는데 필요한 정보
+- 주민번호 등
+
+### URL(Uniform Resource Locator)
+- Locator, 리소스가 있는 위치를 지정
+- 위치는 변할 수 있음
+
+### URL 문법
+- ```scheme://[userinfo@]host[:port][/path][?query][#fragment]```
+- ```https://www.google.com:443/search?q=hello&hl=ko```
+
+##### scheme
+- `(https)`
+- 주로 프로토콜 사용
+- 프로토콜 - 어떤 방식으로 자원에 접근할 것인가 하는 약속 규칙
+- http, https, ftp 등
+- http는 80포트, https 443포트 사용, 포트는 생략 가능
+- https는 http에 보안기능이 추가됨(HTTP Secure)
+
+##### userinfo
+- URL에 사용자정보를 포함해서 인증
+- 거의 사용안함
+
+##### host
+- `(www.google.com)`
+- 호스트명
+- 도메인명 또는 IP주소를 직접 사용가능
+
+##### port
+- `(443)`
+- 포트번호
+- 접속할 포트
+- 일반적으로 생략, 생략시 http 80, https 443
+
+##### path
+- `(/search)`
+- 리소스 경로(path), 계층적 구조
+- /members/100, /items/food1
+
+##### query
+- `(?q=hello&hl=ko)`
+- key=value 형태 
+- ?로 시작, &로 추가 가능 ?keyA=valueA&keyB=valueB
+- query parameter, query string 등으로 불림
+	- 웹서버에 제공하는 파라미터이며, 또는 문자형태로 전달하기때문에
+##### fragment
+- `https://docs.spring.io/spring-boot/docs/current/reference/html/getting-started.html#getting-started.introducing-spring-boot`
+	- `#getting-started.introducing-spring-boot`
+- html 내부 북마크 등에 사용
+- 서버에 전송하는 정보가 아님
+### UNL(Uniform Resource Name)
+- Name, 리소스에 이름을 부여
+- 이름은 변하지 않음
+- urn:isbn:8960777331 (어떤 책의 isbn URN)
+- URN 이름만으로 실제 리소스를 찾을 수 있는 방법이 보편화 되지 않음
+
+### 웹 브라우저 요청 흐름
+- `https://www.google.com:443/search?q=hello&hl=ko`
+- DNS를 조회하여, IP를 알아낸 후, HTTP 요청 메시지 생성
+
+##### http 요청 메시지
+- ```HTTP
+	GET /search?q=hello&hl=ko HTTP/1.1
+	Host: www.google.com
+	```
+1. 애플리케이션 단에서 웹 브라우저가 HTTP 메시지 생성
+2. SOCKET 라이브러리를 통해 OS단의 TCP/IP 계층으로 전달
+- TCP/IP 연결 지시
+3. TCP/IP 계층에서 서로 연결, HTTP 메시지 포함하여 TCP/IP 패킷 생성
+4. 인터넷망으로 전송
+5. 목적지에 도착한 후, 패킷껍질을 제거하면서 HTTP 메시지를 통해 응답 메시지를 패킷에 싸서 전송
+6. 응답메시지를 통해서, 패킷껍질을 제거하여  html데이터를 렌더링하여 웹브라우저에서 결과를 보게됨
+
+### TCP/IP 패킷
+- 출발지 IP, PORT
+- 목적지 IP, PORT
+- 전송 데이터
+- + 전송데이터(HTTP 메시지)
+
+### HTTP 응답 메시지
+- ```
+	HTTP/1.1 200 OK
+	Content-Type: text/html;charset=UTF-8
+	Content-Length: 3423
+	<html>
+	 <body>...</body>
+	</html>
+	```
+
 
 
 
