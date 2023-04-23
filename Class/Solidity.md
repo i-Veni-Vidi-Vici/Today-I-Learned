@@ -122,7 +122,7 @@ pure
 
 view
 - 함수 외부의 변수 읽기 가능,변경 불가
-- ```
+- ```Solidity
   // SPDX-License-Identifier: MIT
 
   pragma solidity >=0.8.0 < 0.9.0;
@@ -136,6 +136,6 @@ view
           return (num1, num2);
       }
   }
-  ``````
+  ```
 https://www.codestates.com/blog/content/%EC%86%94%EB%A6%AC%EB%94%94%ED%8B%B0-%EB%AC%B8%EB%B2%95%EA%B3%BC-%EC%98%88%EC%A0%9C-1
 https://cryptozombies.io/ko/lesson/1/chapter/7
