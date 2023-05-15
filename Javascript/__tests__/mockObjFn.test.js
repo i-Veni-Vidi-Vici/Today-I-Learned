@@ -1,14 +1,12 @@
 const { fetchTitle } = require('../libs/fetchData')
 const { ModifiedTitle } = require('../libs/modifiedTitle')
 
-
-
-
 describe('normal', () => {
-    test('normal', () => {
+    test('normal', async () => {
         // fetchTitle 함수 테스트
-        //질문 왜 then을 한번더 사용하나?
+        //then이 없으면 바로 promise 반환
         fetchTitle().then(res => expect(res).toEqual({"title": "Welcome Modified: delectus aut autem", "userId": 101}));
+
     })
 })
 

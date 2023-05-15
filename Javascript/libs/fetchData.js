@@ -23,6 +23,7 @@ async function fetchTitle() {
     try {
         const modTitle = new ModifiedTitle()
         const mt = await modTitle.get()
+
         return ({
             title: `Welcome ${mt.title}`,
             userId: mt.userId
@@ -31,5 +32,6 @@ async function fetchTitle() {
         throw e
     }
 }
+
 
 module.exports = { fetchData, fetchDataWithError, fetchDataWithCallback, fetchTitle }
