@@ -9,6 +9,8 @@ app.get('/hello', (req, res)=>{
     })
 })
 
-app.listen(8000, () => {
+const server = app.listen(8000, () => {
     console.log('start with 8000')
 })
+
+module.exports = {app, server}
