@@ -13,13 +13,15 @@ jobs:
     jobs2:
         runs-on: ubuntu-latest
         steps:
-            - uses: actions/checkout@v3
-            - run: npm install 
             - run: npm test
     jobs3:
         runs-on: ubuntu-latest
         steps:
-            - uses: actions/checkout@v3
             - run: npm install 
+            - run: npm test
+    jobs4:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v3
             - run: npm test
 
