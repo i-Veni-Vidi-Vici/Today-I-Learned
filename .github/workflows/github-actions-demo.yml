@@ -5,7 +5,13 @@ on:
     branches:
       - master
 jobs:
-  test:
+  job1:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - run: npm install 
+      - run: npm test
+  job2:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
