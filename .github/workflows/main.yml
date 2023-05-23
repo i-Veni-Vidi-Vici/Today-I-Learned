@@ -24,8 +24,13 @@ jobs:
         steps:
             - uses: actions/checkout@v3
             - run: npm test
-    checkout:
+    fake_checkout:
         runs-on: ubuntu-latest
         steps:
+            - run: ls -al
+    real_checkout:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v3
             - run: ls -al
 
