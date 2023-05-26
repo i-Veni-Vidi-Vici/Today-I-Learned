@@ -1,6 +1,10 @@
 const Component = require('../libs/component')
 
 // appHooks 모듈 mock 코드 추가
+const appHooks = require("../libs/appHooks");
+jest.mock("../libs/appHooks")
+appHooks.hookBanana.mockReturnValue('banana');
+appHooks.hookApple.mockReturnValue("potato");
 
 describe('mock module', () => {
     test('giveme banana mock', () => {
