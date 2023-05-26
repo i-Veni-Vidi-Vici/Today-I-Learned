@@ -1,9 +1,11 @@
 {
   "scripts": {
-    "test": "jest"
+    "test": "jest --detectOpenHandles"
   },
   "devDependencies": {
-    "jest": "^29.5.0"
+    "express": "^4.18.2",
+    "jest": "^29.5.0",
+    "supertest": "^6.3.3"
   },
   "name": "gittest3",
   "version": "1.0.0",
