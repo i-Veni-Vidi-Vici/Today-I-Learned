@@ -20,7 +20,7 @@ function fetchDataWithCallback(callback) {
 async function fetchTitle() {
     try {
         const modTitle = new ModifiedTitle()
-        const mt = await modTitle.get()
+        const mt = await modTitle.get() 
         return ({
             title: `Welcome ${mt.title}`,
             userId: mt.userId
