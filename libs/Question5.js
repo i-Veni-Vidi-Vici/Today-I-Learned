@@ -19,3 +19,16 @@
 //   a: "idiot",
 //   b: "scumbag"
 // }) ➞ { idiot: 1, scumbag: 1 }
+
+const countNumberOfOccurrences = (obj)=>{
+    let result ={}
+    for(let key in obj){
+        if(!result[obj[key]])
+            result[obj[key]] =0;
+        result[obj[key]] ++;
+
+    }
+    return result;
+}
+
+module.exports =countNumberOfOccurrences;
