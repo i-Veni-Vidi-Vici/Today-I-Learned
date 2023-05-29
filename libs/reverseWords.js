@@ -8,9 +8,7 @@
 // reverseWords("a good example") ➞ "example good a"
 
 
-const reverseWords = (str)=>{
+const reverseWords = str => str.split(" ").filter(val=> val != "").reverse().join(" ");
 
-    return str.split(" ").filter(val=> val != "").reverse().join(" ");
-}
 
 module.exports = reverseWords
