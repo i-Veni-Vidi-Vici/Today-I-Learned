@@ -15,3 +15,23 @@ describe('mock module', () => {
         expect(Component.givemeApple()).toEqual('potato')
     })
 })
+
+
+// jest.mock('../libs/component', function() {
+//     return{
+//      givemeBanana: jest.fn(() => 'banana'),
+//      givemeApple: jest.fn(()=> 'potato')  //mock 함수만 추적이 가능
+//  }
+//  })
+//  describe('mock module', () => {
+//      test('giveme banana mock', () => {
+//         expect(Component.givemeBanana()).toEqual('banana')
+//         expect(Component.givemeBanana).toBeCalled()
+//      })
+ 
+//      test('giveme apple mock', () => {
+//          expect(Component.givemeApple()).toEqual('potato')
+//          expect(Component.givemeApple).toBeCalled()
+ 
+//      })
+//  })
