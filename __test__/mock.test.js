@@ -9,7 +9,7 @@ const { runCallback } = require('../libs/callbacks')
 // }
 describe('run callback', () => {
     // callback 함수 mock 생성
-    jest.fn(callbackMock);
+    const callbackMock = jest.fn();
 
     test('should run callback (< 100)', () => {
         runCallback(19, callbackMock)
