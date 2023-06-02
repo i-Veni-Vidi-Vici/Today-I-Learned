@@ -22,14 +22,12 @@
 
 const nearestChapter = (obj, val)=>{
     let result;
-    let rekey;
-    for(let key in obj){
-        if(!result || result>=Math.abs(obj[key]-val)){
-            result = Math.abs(obj[key]-val);
-            rekey= key;
-        }
-    }
-    return rekey;
+
+    for(let key in obj)
+        if(!result || Math.abs(obj[result]-val)>=Math.abs(obj[key]-val))
+            result = key;
+            
+    return result;
 }
 
 module.exports = nearestChapter;
