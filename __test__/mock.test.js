@@ -1,7 +1,15 @@
 const { runCallback } = require('../libs/callbacks')
 
+// function runCallback(aNumber, callback) {
+//     const xNumber = aNumber * 5
+
+//     if (xNumber < 100) {
+//         callback(xNumber)
+//     }
+// }
 describe('run callback', () => {
     // callback 함수 mock 생성
+    jest.fn(callbackMock);
 
     test('should run callback (< 100)', () => {
         runCallback(19, callbackMock)
