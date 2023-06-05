@@ -3,7 +3,7 @@ const { app, server } = require('../libs/app');
 
 describe('app', () => {
     afterEach(() => {
-        server.cloes();
+        server.close();
     })
     test('GET /helloworld', async () => {
         await request(app).get('/helloworld').expect(200, {
