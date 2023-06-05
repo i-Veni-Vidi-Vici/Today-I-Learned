@@ -9,25 +9,49 @@ test('the data is peanut butter', () => {
     fetchData().then(val =>{expect(val).toMatch('peanut butter')})
 })
 
-// test('the data is peanut butter', () => {
-//     // fetchData 함수 테스트 (async await 함수 이용)
-// })
+test('the data is peanut butter', async() => {
+    // fetchData 함수 테스트 (async await 함수 이용)
+    expect(await fetchData()).toMatch('peanut butter')
+})
 
-// test('the fetch fails with an error', async () => {
-//     // fetchDataWithError 테스트
-// })
+// function fetchDataWithError() {
+//     return new Promise((res, rej) => {
+//         rej('error')
+//     })
+// }
+test('the fetch fails with an error', async () => {
+    // fetchDataWithError 테스트
 
-// test('the data is peanut butter with .resolves', async () => {
-//     // fetchData 함수 테스트 (.resolves 함수 이용)
-// })
+    try{
+        await fetchDataWithError()
+    }catch(error){
+        expect(error).toMatch("error")
+    }
+})
 
-// test('the fetch fails with an error', async () => {
-//     // assertions 함수 이용
-//     // fetchDataWithError 함수 테스트 (.rejects 함수 이용)
-// })
+test('the data is peanut butter with .resolves', async () => {
+    // fetchData 함수 테스트 (.resolves 함수 이용)
+    expect(fetchData()).resolves.toMatch('peanut butter')
+})
 
-// test('the data is peanut butter', () => {
-//     // fetchDataWithCallback 테스트 (done 이용)
+test('the fetch fails with an error', async () => {
+    // assertions 함수 이용
+    // fetchDataWithError 함수 테스트 (.rejects 함수 이용)
+    expect(fetchDataWithError()).rejects.toMatch("error")
+})
+// function fetchDataWithCallback(callback) {
+//     const message = 'peanut butter'
+//     return callback(null, message)
+// }
 
-//     fetchDataWithCallback(callback)
-// })
+test('the data is peanut butter', (done) => {
+    // fetchDataWithCallback 테스트 (done 이용)
+    const callback = (error, message)=>{
+        if(error) throw error;
+        setTimeout(()=>{
+            expect(message).toMatch('peanut butter')
+            done();
+        },2000)
+    }
+    fetchDataWithCallback(callback)
+})
