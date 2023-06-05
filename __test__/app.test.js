@@ -12,5 +12,15 @@ describe("app", () => {
             message: "hi"
         })
     })
+        // test("hello aoi", (done)=>{
+    //     request(app).get('/hello').expect(200).end((err, res) =>{
+    //         if(err) throw err
+    //             expect(res.body).toMatchObject({
+    //                 result: false,
+    //                 message: 'hello, world'
+    //             })
+    //             done();
+    //     })
+    // })
 })
 
