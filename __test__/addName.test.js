@@ -11,7 +11,7 @@ const addName = require("../libs/addName")
 
 describe(`addName`,()=>{
     test(`addName({}, "Brutus", 300) ➞ { Brutus: 300 }`,()=>{
-        expect().toEqual()
+        expect(addName({}, "Brutus", 300)).toEqual({ Brutus: 300 })
     })
 
     test(`addName({ piano: 500 }, "Brutus", 400) ➞ { piano: 500, Brutus: 400 }`,()=>{
