@@ -1,0 +1,40 @@
+name: learn-github-actions
+run-name: ${{ github.actor }} is learning GitHub Actions
+on: 
+    push:
+        branches: main
+jobs:
+    jobs:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v3
+            - run: npm install 
+            - run: npm test
+    jobs2:
+        runs-on: ubuntu-latest
+        steps:
+            - run: npm test
+        needs: jobs
+    jobs3:
+        runs-on: ubuntu-latest
+        steps:
+            - run: npm install 
+            - run: npm test
+        needs: jobs2
+    jobs4:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v3
+            - run: npm test
+        needs: jobs3
+    fake_checkout:
+        runs-on: ubuntu-latest
+        steps:
+            - run: ls -al
+    real_checkout:
+        runs-on: ubuntu-latest
+        steps:
+            - run: ls -al
+            - uses: actions/checkout@v3
+            - run: ls -al
+
